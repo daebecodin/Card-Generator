@@ -28,7 +28,8 @@ import java.util.Scanner;
 public final class Language {
     //
     // Static Data Fields
-    //    
+    //
+
     private static final String defaultAlienSound = "~ ąļīæń ~ "; // Default
     private static final Config config = new Config();
     private static final int WIDTH = 70;
@@ -67,16 +68,30 @@ public final class Language {
         System.out.println(Config.getOfficialAppHeader());
     }
 
-    // congig is referencing this method from the class so it must be static
-    public static Language setLanguagePreference() {
-        System.out.print("Language: ");
-        String lang = input.next().trim().toLowerCase();
-        return switch (lang) {
-            case "alien" -> populateAlienPhrases();
-            case "english" -> populateEnglishPhrases();
-            default -> throw new IllegalStateException("Unexpected value: " + lang);
-        };
+    public static Language handleLanguagePreferences() {
+        while (true) {
+            System.out.print("Language: ");
+            String lang = input.next().trim().toLowerCase();
 
+
+            switch (lang) {
+                case "alien" -> {return populateAlienPhrases();}
+                case "english" -> {return populateEnglishPhrases();}
+                default -> System.out.println("Invalid Language: " + lang );
+
+            }
+        }
+    }
+
+    // config is referencing this method from the class so it must be static
+    public static Language setLanguagePreference() {
+        while (true) {
+            try {
+                return handleLanguagePreferences();
+            } catch (IllegalStateException e) {
+                System.err.println("invalid language");
+            }
+        }
     }
 
     private static Language populateAlienPhrases() {

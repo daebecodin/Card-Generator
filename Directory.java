@@ -28,7 +28,7 @@ public final class Directory {
     public Directory() {
     }
 
-    public Object getPath() {
+    public String getPath() {
         return Config.getDefaultLogDirectoryPath();
     }
 

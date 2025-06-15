@@ -21,8 +21,13 @@ import java.util.List;
 
 public class StdOutStdErrTee extends OutputStream {
 
-    private String stdOutFilePath;
-    private String stdErrFilePath;
+    private Config config;
+
+
+
+
+    private String stdOutFilePath = "log/out";
+    private String stdErrFilePath = "log/err";
 
 
     public Object getStdOutFilePath() {
