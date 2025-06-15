@@ -24,6 +24,11 @@ public final class GeneralManager extends Person {
     public GeneralManager() {
     }
 
+    @Override
+    public void sayGreeting(String string) {
+
+    }
+
     //
     // Instance Methods
     //

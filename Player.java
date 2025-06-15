@@ -22,6 +22,11 @@ public final class Player extends Person {
     public Player() {
     }
 
+    @Override
+    public void sayGreeting(String string) {
+
+    }
+
     //
     // Instance Methods
     //

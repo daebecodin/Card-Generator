@@ -26,6 +26,11 @@ public final class Student extends Person {
     public Student() {
     }
 
+    @Override
+    public void sayGreeting(String string) {
+
+    }
+
     //
     // Instance Methods
     //

@@ -26,6 +26,10 @@ public final class ChatSession {
     public ChatSession() {
     }
 
+    public ChatSession(Club club, University university) {
+
+    }
+
     //
     // Instance Methods
     //

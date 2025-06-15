@@ -24,7 +24,17 @@ public final class University extends Organization {
     //
     // Constructors
     //
-    public University() {
+    public University(String defaultUniversity) {
+    }
+
+    @Override
+    public void displayAbout() {
+
+    }
+
+    @Override
+    public void displayMission() {
+
     }
 
     //

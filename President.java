@@ -24,6 +24,11 @@ public final class President extends Person {
     public President() {
     }
 
+    @Override
+    public void sayGreeting(String string) {
+
+    }
+
     //
     // Instance Methods
     //
