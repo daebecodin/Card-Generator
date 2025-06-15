@@ -161,7 +161,7 @@ public final class Config {
     public void setPreferences() {
         Language.displayAppHeader();
         this.language = Language.setLanguagePreference();
-        this.timer = Timer.setTimeZonePreference();
+//        this.timer = Timer.setTimeZonePreference();
         this.club = new Club(Config.defaultClub);
         this.university = new University(Config.defaultUniversity);
         this.displayConfigurationInformation();

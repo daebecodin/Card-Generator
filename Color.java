@@ -31,6 +31,10 @@ public final class Color {
     public Color() {
     }
 
+    public Object getColorSequences() {
+        return Config.getDefaultColorSequences();
+    }
+
     //
     // Static Methods
     //

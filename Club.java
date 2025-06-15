@@ -21,7 +21,21 @@ public final class Club extends Organization {
     //
     // Constructors
     //
-    public Club() {
+    public Club(String defaultClub) {
+    }
+
+    public static String getOfficialSong() {
+        return "Yahoo";
+    }
+
+    @Override
+    public void displayAbout() {
+
+    }
+
+    @Override
+    public void displayMission() {
+
     }
 
     //
