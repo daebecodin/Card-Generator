@@ -29,24 +29,11 @@ public final class Language {
     //
     // Static Data Fields
     //
-
     private static final String defaultAlienSound = "~ ąļīæń ~ "; // Default
     private static final Config config = new Config();
     private static final int WIDTH = 70;
-
-    private final Map<String, String> phrases = new HashMap<>();
-
     private static final Scanner input = new Scanner(System.in);
     private String locale = "";
-
-
-
-    public static void main(String[] args) {
-        displayAppHeader();
-
-        setLanguagePreference();
-    }
-
     //
     // Instance Data Fields
     //
@@ -56,7 +43,6 @@ public final class Language {
     //
     public Language() {
     }
-
     public  Language(String locale) {
         this.locale = locale;
     }
@@ -104,24 +90,15 @@ public final class Language {
     }
 
 
-    public String getGreetingPhrase(int i) {
-        if (locale.equals("alien")) {
-            return switch(i) {
-                case 0 -> "Test from Alien";
+    public String handleGreetingPhrase(int i) {
 
-                default -> Language.defaultAlienSound;
-            };
-
-        }
-
-        return switch (i) {
-            case 0 -> "Hello";
-
-            default -> "";
-        };
     }
 
-    public String getConfigPhrase(int i) {
+    public String getGreetingPhrase(int i) {
+        return handleGreetingPhrase(i);
+    }
+
+    public String handleConfigPhrase(int i) {
         if (locale.equals("alien")) {
             return switch(i) {
                 case 0 -> "~ zzzk-blop-zzzk • zrrrk-blap • zzzk-blop ~";  // separator
@@ -151,6 +128,10 @@ public final class Language {
             case 9 -> "Default Club:";
             default -> "";
         };
+    }
+
+    public String getConfigPhrase(int i) {
+        return handleConfigPhrase(i);
     }
 
     public Object getLanguage() {
