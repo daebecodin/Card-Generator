@@ -15,7 +15,6 @@ package assignment02PartB;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.TextStyle;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -30,23 +29,25 @@ public class Timer {
     //
     // Instance Data Fields
     //
-    private final ZoneId zone;
     //
     // Constructors
     //
    public Timer(ZoneId zone) {
-       this.zone = zone;
+
    }
 
 
 
     public static Timer setTimeZonePreference() {
-        System.out.print("TimeZone: ");
-        String in = input.next().trim().toUpperCase();
+
 
         while (true) {
-        ZoneId zone;
-        switch (in) {
+            System.out.print("TimeZone: ");
+            String in = input.next().trim().toUpperCase();
+            ZoneId zone;
+
+
+            switch (in) {
             case "EST" -> {
                 zone = ZoneId.of("America/New_York");
             }
@@ -56,7 +57,7 @@ public class Timer {
             }
 
             default -> {
-                System.err.println("Invalid Zone: " + in);
+                System.out.println("Invalid Zone: " + in);
                 continue;
             }
         }
@@ -71,10 +72,9 @@ public class Timer {
 
         String fullName = zdt.format(DateTimeFormatter.ofPattern("zzzz", Locale.ENGLISH));
 
-
-        Boolean isDst = zdt.getZone().getRules().isDaylightSavings(zdt.toInstant());
-        String status  = isDst ? "in Daylight Saving Time" : "not in Daylight Saving Time";
-        return String.format("%s %s", fullName, status);
+        boolean isDst = zdt.getZone().getRules().isDaylightSavings(zdt.toInstant()); // returns a boolean of if the zone is in dst
+        String status  = isDst ? "in Daylight Saving Time" : "not in Daylight Saving Time"; // based on that value , print with according text
+        return String.format("%s %s", fullName, status); // formated string
 
 
     }

@@ -17,6 +17,8 @@ public final class President extends Person {
     //
     // Instance Data Fields
     //
+    private FrontOffice frontOffice;
+    private Club club;
 
     //
     // Constructors
@@ -24,15 +26,35 @@ public final class President extends Person {
     public President() {
     }
 
-    @Override
-    public void sayGreeting(String string) {
-
+    public President(FrontOffice frontOffice, Club club) {
+        this.frontOffice = frontOffice;
+        this.club = club;
+    }
+    public President(FrontOffice frontOffice) {
+        this.frontOffice = frontOffice;
+    }
+    public President(Club club) {
+        this.club = club;
     }
 
     //
     // Instance Methods
     //
+    public FrontOffice getFrontOffice() {
+        return this.frontOffice;
+    }
+    public Club getClub() {
+        return this.club;
+    }
 
+    public President setFrontOffice(FrontOffice frontOffice) {
+        this.frontOffice = frontOffice;
+        return this;
+    }
+    public President setClub(Club club) {
+        this.club = club;
+        return this;
+    }
     //
     // Language
     //
@@ -40,4 +62,18 @@ public final class President extends Person {
     //
     // Override
     //
+    @Override
+    public void sayGreeting(String greeting) {
+        System.out.println("I am a President");
+    }
+
+    @Override
+    public String toString() {
+        return super.toString().replace("}", "") + "{" +
+                "frontOffice=" + frontOffice +
+                ", club=" + club +
+                '}';
+    }
 }
+
+

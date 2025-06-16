@@ -21,6 +21,9 @@ public sealed abstract class Person implements Greeting permits Student, Player,
     //
     // Instance Data Fields
     //
+    private String firstName;
+    private String lastName;
+    private String fullName;
 
     //
     // Constructors
@@ -28,7 +31,36 @@ public sealed abstract class Person implements Greeting permits Student, Player,
     public Person() {
     }
 
+    public Person(String firstName, String lastName) {
+
+    }
+
     // Instance Methods
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+    public String getLastName() {
+        return this.lastName;
+    }
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
+    }
+
+    public Person setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+    public Person setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+    public Person setFullName(String firstName, String lastName) {
+        this.fullName = firstName + " " + lastName;
+        return this;
+    }
+
+
 
     //
     // Language
@@ -37,4 +69,17 @@ public sealed abstract class Person implements Greeting permits Student, Player,
     //
     // @override
     //
+    @Override
+    public void sayGreeting(String greeting) {
+        System.out.println("I am a person");
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", fullName='" + fullName + '\'' +
+                '}';
+    }
 }
