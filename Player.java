@@ -15,6 +15,23 @@ package assignment02PartB;
 import java.security.PublicKey;
 
 public final class Player extends Person {
+
+    public static void main(String[] args) {
+        Club club = new Club("SF Giants");
+
+        Person bp = new Player()
+                .setPosition("Short-Stop")
+                .setJerseyNumber(10)
+                .setTotalBats(74)
+                .setTotalThrows(16)
+                .setMlbDebut(2004)
+                .setClub(club)
+                .setFirstName("durand") // inherited from Person
+                .setLastName("dyer"); // inherited from Person
+
+
+        System.out.println(sb);
+    }
     private static final StringBuilder sb = new StringBuilder();
 
     // Instance Data Fields
@@ -23,7 +40,7 @@ public final class Player extends Person {
     private int jerseyNumber;
     private int totalBats;
     private int totalThrows;
-    private Long mlbDebut;
+    private int mlbDebut;
     //
     // Constructors
     //
@@ -34,7 +51,7 @@ public final class Player extends Person {
     //
     // Instance Methods
     //
-    public void display() {
+    public StringBuilder display() {
         sb.append(this.getClass().getSimpleName()).append(": ").append(this.getFullName());
         sb.append(String.format("%-25s %-50s", "Club:", this.getClub()));
         sb.append(String.format("%-25s %-50s", "Position:", this.getPosition()));
@@ -43,6 +60,7 @@ public final class Player extends Person {
         sb.append(String.format("%-25s %-50s", "Throws:", this.getTotalThrows()));
         sb.append(String.format("%-25s %-50s", "MLB Debut:", this.getMlbDebut()));
 
+        return sb;
     }
     //
     // Additional Instance Methods
@@ -62,7 +80,7 @@ public final class Player extends Person {
     public int getTotalThrows() {
         return this.totalThrows;
     }
-    public Long getMlbDebut() {
+    public int getMlbDebut() {
         return this.mlbDebut;
     }
 
@@ -86,7 +104,7 @@ public final class Player extends Person {
         this.totalThrows = totalThrows;
         return this;
     }
-    public Player setMlbDebut(Long mlbDebut) {
+    public Player setMlbDebut(int mlbDebut) {
         this.mlbDebut = mlbDebut;
         return this;
     }

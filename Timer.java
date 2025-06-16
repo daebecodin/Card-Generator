@@ -42,6 +42,7 @@ public class Timer {
 
 
         while (true) {
+            String timeZone;
             System.out.print("TimeZone: ");
             String in = input.next().trim().toUpperCase();
             ZoneId zone;

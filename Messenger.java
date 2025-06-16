@@ -51,10 +51,12 @@ public final class Messenger {
     public static Config getConfig() {
         return Messenger.config;
     }
+
     private static void start() {
         Messenger.config.getStdOutStdErrTee().startLog();
         Messenger.config.setPreferences();
     }
+
     private static void chat() {
         (new ChatSession(Messenger.config.getClub(), Messenger.config.getUniversity())).runChatSession();
     }

@@ -26,15 +26,15 @@ public class StdOutStdErrTee extends OutputStream {
 
 
 
-    private String stdOutFilePath = "log/out";
-    private String stdErrFilePath = "log/err";
+    private String stdOutFilePath = getStdOutFilePath();
+    private String stdErrFilePath = getStdErrFilePath();
+    private String receipt = "src/assignment02PartB/log/Receipt-*-*.log ";
 
 
-    public Object getStdOutFilePath() {
+    public String getStdOutFilePath() {
         return Config.getDefaultStdOutFilePath();
     }
-
-    public Object getStdErrFilePath() {
+    public String getStdErrFilePath() {
         return Config.getDefaultStdErrFilePath();
     }
 
@@ -161,6 +161,14 @@ public class StdOutStdErrTee extends OutputStream {
 
             out.write(b, off, len);
         }
+    }
+
+    public String getRecipt() {
+        return receipt;
+    }
+
+    public void setRecipt(String recipt) {
+        this.receipt = recipt;
     }
 
     //

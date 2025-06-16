@@ -21,8 +21,6 @@ package assignment02PartB;
 // https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/ResourceBundle.html
 
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public final class Language {
@@ -33,10 +31,12 @@ public final class Language {
     private static final Config config = new Config();
     private static final int WIDTH = 70;
     private static final Scanner input = new Scanner(System.in);
-    private String locale = "";
+    private static String language;
+    private static final StringBuilder sb = new StringBuilder();
     //
     // Instance Data Fields
     //
+    private String locale = "";
 
     //
     // Constructors
@@ -49,21 +49,43 @@ public final class Language {
     //
     // Static Methods
     //
+    public static void clearConsole() {
+        // Move cursor to home (0,0) and clear entire screen
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 
+    public static Language getLang() {
+        System.out.print("Pick a language: ");
+        language = input.next();
+
+        return new Language(language);
+
+    }
     public static void displayAppHeader() {
+
+
+        try {
+            getLang();
+        } catch (IllegalStateException e) {
+            System.out.println("invalid language");
+        }
+
+        System.out.println();
         System.out.println(Config.getOfficialAppHeader());
     }
 
     public static Language handleLanguagePreferences() {
+
         while (true) {
-            System.out.print("Language: ");
-            String lang = input.next().trim().toLowerCase();
+            System.out.println("Language: " + language.toUpperCase());
 
 
-            switch (lang) {
+
+            switch (language) {
                 case "alien" -> {return populateAlienPhrases();}
                 case "english" -> {return populateEnglishPhrases();}
-                default -> System.out.println("Invalid Language: " + lang );
+                default -> System.out.println("Invalid Language: " + language );
 
             }
         }
@@ -92,6 +114,7 @@ public final class Language {
 
     public String handleGreetingPhrase(int i) {
 
+        return "hola";
     }
 
     public String getGreetingPhrase(int i) {
@@ -100,19 +123,22 @@ public final class Language {
 
     public String handleConfigPhrase(int i) {
         if (locale.equals("alien")) {
-            return switch(i) {
-                case 0 -> "~ zzzk-blop-zzzk • zrrrk-blap • zzzk-blop ~";  // separator
-                case 1 -> "~ blap-zzz: zrrrk-blop zzzk! ~";            // “Language: …”
-                case 2 -> "~ blap-zzz: zrrrk-glar zzzk! ~";            // “Time Zone: …”
-                case 3 -> "~ blap-zzz: zrrrk-floob zzzk! ~";           // “Color Sequences: …”
-                case 4 -> "~ blap-zzz: zrrrk-splat zzzk! ~";           // “Standard Output Log: …”
-                case 5 -> "~ blap-zzz: zrrrk-splat zzzk! ~";           // “Standard Error Log: …”
-                case 6 -> "~ blap-zzz: zrrrk-splat zzzk! ~";           // “Receipt Log: …”
-                case 7 -> "~ blap-zzz: zrrrk-name-name zzzk! ~";      // “Receipt-*-*.log”
-                case 8 -> "~ blap-zzz: zrrrk-univ zzzk! ~";            // “Default University: …”
-                case 9 -> "~ blap-zzz: zrrrk-club zzzk! ~";            // “Default Club: …”
+            return String.valueOf(switch(i) {
+                case 0 -> {
+                    sb.append(String.format("%-25s %-50s", defaultAlienSound, defaultAlienSound).repeat(10));
+                    yield  sb.toString();
+                }  // separator
+                case 1 -> sb.append(String.format("%-25s %-50s", defaultAlienSound, defaultAlienSound));           // “Language: …”
+                case 2 -> sb.append(String.format("%-25s %-50s", defaultAlienSound, defaultAlienSound));            // “Time Zone: …”
+                case 3 -> sb.append(String.format("%-25s %-50s", defaultAlienSound, defaultAlienSound));         // “Color Sequences: …”
+                case 4 -> sb.append(String.format("%-25s %-50s", defaultAlienSound, defaultAlienSound));           // “Standard Output Log: …”
+                case 5 -> sb.append(String.format("%-25s %-50s", defaultAlienSound, defaultAlienSound));          // “Standard Error Log: …”
+                case 6 -> sb.append(String.format("%-25s %-50s", defaultAlienSound, defaultAlienSound));         // “Receipt Log: …”
+                case 7 -> sb.append(String.format("%-25s %-50s", defaultAlienSound, defaultAlienSound));     // “Receipt-*-*.log”
+                case 8 -> sb.append(String.format("%-25s %-50s", defaultAlienSound, defaultAlienSound));          // “Default University: …”
+                case 9 -> sb.append(String.format("%-25s %-50s", defaultAlienSound, defaultAlienSound));            // “Default Club: …”
                 default -> Language.defaultAlienSound;
-            };
+            });
         }
 
         return switch (i) {
