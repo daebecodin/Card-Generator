@@ -17,11 +17,16 @@ public final class Manager extends Person {
     //
     // Instance Data Fields
     //
-
+    private FrontOffice frontOffice;
     //
     // Constructors
     //
     public Manager() {
+    }
+
+    public Manager(String firstName, String lastName, FrontOffice frontOffice) {
+        super(firstName, lastName);
+        this.frontOffice = frontOffice;
     }
 
     @Override

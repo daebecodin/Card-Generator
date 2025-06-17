@@ -24,6 +24,11 @@ public final class University extends Organization {
     //
     // Constructors
     //
+
+
+    public University() {
+    }
+
     public University(String defaultUniversity) {
     }
 

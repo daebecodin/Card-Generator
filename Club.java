@@ -27,6 +27,7 @@ public final class Club extends Organization {
     private String teamBallPark;
     private int worldSeriesTitles;
     private int nationalLeaguePennants;
+    private int divisionTitles;
     private int wildCardBerths;
     private OwnerGroup teamOwners;
     private President teamPresident;
@@ -36,7 +37,26 @@ public final class Club extends Organization {
     //
     // Constructors
     //
+    public Club() {
+    }
+
+
     public Club(String defaultClub) {
+        this.name = "San Francisco Giants";
+        this.shortName = "SF Giants";
+        this.establishedOn = 1813;
+        this.teamColors = List.of("Orange", "Black", "Gold", "Cream");
+        this.teamBallPark = "Oracle Park";
+        this.worldSeriesTitles = 8;
+        this.nationalLeaguePennants = 23;
+        this.divisionTitles = 8;
+        this.wildCardBerths = 3;
+        this.teamOwners = new OwnerGroup();
+
+        // downcasting because they come in as Person objects
+        this.teamPresident = (President) new President().setFirstName("Farhan").setLastName("Zaidi");
+        this.teamGeneralManager = (GeneralManager) new GeneralManager().setFirstName("Scott").setLastName("Harris");
+        this.manager = (Manager) new Manager().setFirstName("Gabe").setLastName("Kapler");
     }
 
     public static String getOfficialSong() {
@@ -52,18 +72,6 @@ public final class Club extends Organization {
     public void displayMission() {
 
     }
-
-    //
-    // Static Methods
-    //
-
-    //
-    // Instance Methods
-    //
-
-    //
-    // Additional Instance Methods
-    //
 
     public String getName() {
         return this.name;
@@ -91,6 +99,10 @@ public final class Club extends Organization {
 
     public int getNationalLeaguePennants() {
         return this.nationalLeaguePennants;
+    }
+
+    public int getDivisionTitles() {
+        return divisionTitles;
     }
 
     public int getWildCardBerths() {
@@ -145,6 +157,11 @@ public final class Club extends Organization {
 
     public Club setNationalLeaguePennants(int nationalLeaguePennants) {
         this.nationalLeaguePennants = nationalLeaguePennants;
+        return this;
+    }
+
+    public Club setDivisionTitles(int divisionTitles) {
+        this.divisionTitles = divisionTitles;
         return this;
     }
 

@@ -12,26 +12,27 @@ package assignment02PartB;
 // Please organize all the given files in 1 same package
 // Please make sure to read the provided "_ListOf-PleaseDoNotChange.txt"
 
-import java.security.PublicKey;
 
 public final class Player extends Person {
 
-    public static void main(String[] args) {
-        Club club = new Club("SF Giants");
-
-        Person bp = new Player()
-                .setPosition("Short-Stop")
-                .setJerseyNumber(10)
-                .setTotalBats(74)
-                .setTotalThrows(16)
-                .setMlbDebut(2004)
-                .setClub(club)
-                .setFirstName("durand") // inherited from Person
-                .setLastName("dyer"); // inherited from Person
-
-
-        System.out.println(sb);
-    }
+//    public static void main(String[] args) {
+//        Club club = new Club()
+//                .setName("San Francisco Giants")
+//                .setShortName("SF Giants");
+//
+//        Person bp = new Player()
+//                .setPosition("Short-Stop")
+//                .setJerseyNumber(10)
+//                .setTotalBats(74)
+//                .setTotalThrows(16)
+//                .setMlbDebut(2004)
+//                .setClub(club)
+//                .setFirstName("durand") // inherited from Person
+//                .setLastName("dyer"); // inherited from Person
+//
+//
+//        System.out.println(sb);
+//    }
     private static final StringBuilder sb = new StringBuilder();
 
     // Instance Data Fields
@@ -47,6 +48,15 @@ public final class Player extends Person {
     public Player() {
     }
 
+    public Player(String firstName, String lastName, Club club, String position, int jerseyNumber, int totalBats, int totalThrows, int mlbDebut) {
+        super(firstName, lastName);
+        this.club = club;
+        this.position = position;
+        this.jerseyNumber = jerseyNumber;
+        this.totalBats = totalBats;
+        this.totalThrows = totalThrows;
+        this.mlbDebut = mlbDebut;
+    }
 
     //
     // Instance Methods

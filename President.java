@@ -26,6 +26,12 @@ public final class President extends Person {
     public President() {
     }
 
+    public President(String firstName, String lastName, FrontOffice frontOffice, Club club) {
+        super(firstName, lastName);
+        this.frontOffice = frontOffice;
+        this.club = club;
+    }
+
     public President(FrontOffice frontOffice, Club club) {
         this.frontOffice = frontOffice;
         this.club = club;
