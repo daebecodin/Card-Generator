@@ -15,10 +15,11 @@ package assignment02PartB;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public final class Club extends Organization {
 
     private static final StringBuilder sb = new StringBuilder();
-
+    private static final int WIDTH = 70;
 
     //
     // Instance Data Fields
@@ -47,31 +48,33 @@ public final class Club extends Organization {
     }
 
 
+    public Club(String name, String shortName, int establishedOn, List<String> teamColors, String teamBallPark, int worldSeriesTitles, int nationalLeaguePennants, int divisionTitles, int wildCardBerths, OwnerGroup teamOwners, President teamPresident, GeneralManager teamGeneralManager, Manager manager) {
+        this.name = name;
+        this.shortName = shortName;
+        this.establishedOn = establishedOn;
+        this.teamColors = teamColors;
+        this.teamBallPark = teamBallPark;
+        this.worldSeriesTitles = worldSeriesTitles;
+        this.nationalLeaguePennants = nationalLeaguePennants;
+        this.divisionTitles = divisionTitles;
+        this.wildCardBerths = wildCardBerths;
+        this.teamOwners = teamOwners;
+        this.teamPresident = teamPresident;
+        this.teamGeneralManager = teamGeneralManager;
+        this.manager = manager;
+    }
+
     public Club(String name) {
-        this.name = "San Francisco Giants";
-        this.shortName = "SF Giants";
-        this.establishedOn = 1813;
-        this.teamColors = List.of("Orange", "Black", "Gold", "Cream");
-        this.teamBallPark = "Oracle Park";
-        this.worldSeriesTitles = 8;
-        this.nationalLeaguePennants = 23;
-        this.divisionTitles = 8;
-        this.wildCardBerths = 3;
-
-
-//        this.teamOwners = new OwnerGroup().setName("San Francisco Baseball Association LLC").setClub(this);
-
-        // downcasting because they come in as Person objects
-//        this.teamPresident = (President) new President().setFullName("Farhan", "Zadai");
-//        this.teamGeneralManager = new GeneralManager("Scott", "Harris");
-//        this.manager = new Manager("Gabe", "Kepler");
+        this.name = name;
     }
 
     public President getTeamPresident() {
         return this.teamPresident;
-    } public GeneralManager getTeamGeneralManager() {
+    }
+    public GeneralManager getTeamGeneralManager() {
         return this.teamGeneralManager;
-    } public Manager getTeamManager() {
+    }
+    public Manager getTeamManager() {
         return this.manager;
     }
     public static String getOfficialSong() {
@@ -153,8 +156,8 @@ public final class Club extends Organization {
         return this;
     }
 
-    public Club setTeamColors(List<String> teamColors) {
-        this.teamColors = teamColors;
+    public Club setTeamColors(String... teamColors) {
+        this.teamColors = List.of(teamColors);
         return this;
     }
 
@@ -203,7 +206,36 @@ public final class Club extends Organization {
         return this;
     }
 
-    //
-    // Language
-    //
+    public String clubIntro() {
+        sb.setLength(0);
+        sb.append("\n");
+        sb.append(this.getShortName()).append(": ").append("Welcome to the ").append(this.getName().toUpperCase()).append("!").append("\n");
+        sb.append("-".repeat(WIDTH));
+        return sb.toString();
+    }
+    public String connectPlayerIntro() {
+        sb.setLength(0);
+        sb.append("\n");
+        sb.append(String.format("%s %s %s%n", this.getShortName(), ": ", "We are connecting you with our player...")).append(String.format("%s%n", ". . . . ."));
+        sb.append("-".repeat(WIDTH));
+        return sb.toString();
+    }
+    @Override
+    public String toString() {
+        sb.setLength(0); // clear buffer
+        sb.append(String.format("%-25s %-50s%n", "Club:", this.getName()));
+        sb.append(String.format("%-25s %-50s%n", "Short Name:", this.getShortName()));
+        sb.append(String.format("%-25s %-50s%n", "Established In:", this.getEstablishedOn()));
+        sb.append(String.format("%-25s %-50s%n", "Colors:", String.join(", ", this.getTeamColors())));
+        sb.append(String.format("%-25s %-50s%n", "Ball Park:", this.getTeamBallPark()));
+        sb.append(String.format("%-25s %-50s%n", "World Series Titles:", this.getWorldSeriesTitles()));
+        sb.append(String.format("%-25s %-50s%n", "NL Pennants:", this.getNationalLeaguePennants()));
+        sb.append(String.format("%-25s %-50s%n", "Wild Card Berths", this.getWildCardBerths()));
+        sb.append(String.format("%-25s %-50s%n", "Owners", this.getTeamOwners().getName()));
+        sb.append(String.format("%-25s %-50s%n", "President:", this.getTeamPresident().getFullName()));
+        sb.append(String.format("%-25s %-50s%n", "General Manager:", this.getTeamGeneralManager().getFullName()));
+        sb.append(String.format("%-25s %-50s%n", "Manager", this.getTeamManager().getFullName()));
+        sb.append("-".repeat(WIDTH)).append("\n");
+        return sb.toString();
+    }
 }

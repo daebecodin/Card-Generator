@@ -17,6 +17,8 @@ import java.util.List;
 
 public final class Student extends Person {
 
+    private static final int WIDTH = 70;
+    private static final StringBuilder sb = new StringBuilder();
     //
     // Instance Data Fields
     //
@@ -29,10 +31,20 @@ public final class Student extends Person {
     //
     public Student() {
     }
+    public Student(String name) {
+        super(name);
+    }
     public Student(String email, List<Card> cards, University university) {
         this.email = email;
         this.cards = cards;
         this.university = university;
+    }
+
+
+    public String talk() {
+        sb.setLength(0);
+        sb.append(String.format("%s %s", this.getFullName(), ":"));
+        return sb.toString();
     }
 
     public String getEmail() {

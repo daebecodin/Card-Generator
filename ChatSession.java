@@ -17,7 +17,7 @@ import java.util.List;
 public final class ChatSession {
 
     //  Static Data Fields
-    private Club club = new Club("SF Giants");
+    private Club club = new Club("sf giants");
     private University university = new University();
     private static final int WIDTH = 70;
     private static final StringBuilder sb = new StringBuilder();
@@ -79,26 +79,6 @@ public final class ChatSession {
     private void chat() {
     }
     private void runQuiz() {
-        Quiz giantsQuiz = new Quiz()
-                .setQuizTitle(" *** FREE TICKETS to SF GIANTS Games *** _ 1 miss allowed _")
-                .setWinMessage(" *** Congrats! You won FREE TICKETS to SF GIANTS Games ***")
-                .setLoseMessage(" ____ Please try again at your graduation ceremony. ____")
-                .setAllowedMisses(1)
-                .addQuestion("Which type of class has 'protected' constructors?",
-                        "abstract")
-                .addQuestion(" What type of method did Java 8 add to 'interface'?",
-                        "default")
-                .addQuestion(" What new keyword did Java 13 add to 'switch' statement?",
-                        "yield")
-                .addQuestion(" In Java 15, what keyword pairs with 'sealed'?",
-                        "permits")
-                .addQuestion(" Giants in Spanish?",
-                        "Gigantes")
-                .addQuestion(" Take me out to the...?",
-                        "Ball Game");
-        //
-        // Where put userName?? idk i didn't look into that yet
-        //
     }
     private void stopChatSession() {
     }
