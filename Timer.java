@@ -41,7 +41,6 @@ public class Timer {
     
     public static String timeStamp() {
 
-
         ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of(String.valueOf(ZoneId.systemDefault())));
         DateTimeFormatter dtf = new DateTimeFormatterBuilder()
                 .appendPattern("yyyy/MM/dd hh:mm:ss ") // desired format for date and time
