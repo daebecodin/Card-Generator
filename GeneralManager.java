@@ -30,7 +30,8 @@ public final class GeneralManager extends Person {
         this.frontOffice = frontOffice;
     }
 
-    public GeneralManager(String scott, String harris) {
+    public GeneralManager(String firstName, String lastName) {
+        super(firstName, lastName);
     }
 
     public FrontOffice getFrontOffice() {
