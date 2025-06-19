@@ -6,12 +6,12 @@ This project is a command-line application developed for the CSC 220 - Data Stru
 
 ## Features
 
-* **Interactive Chat Session**: Simulates a complete, menu-driven conversation, gathering user information and guiding them through the application's features. [cite: 11]
-* **Dynamic User Configuration**: Allows the user to select their preferred language (English or a placeholder "Alien") and time zone (PST/EST) at startup. [cite: 2, 7]
-* **Rich Object-Oriented Design**: Utilizes a well-defined class hierarchy to model real-world entities like `Person`, `Player`, `Student`, `Club`, and `University`, showcasing principles of inheritance and polymorphism.
-* **ASCII Art Card Generation**: Dynamically creates and displays stylized "Thank You" cards based on user input for the recipient, message, and a chosen art symbol. [cite: 24, 27]
-* **Comprehensive Logging System**: Redirects all standard output (`System.out`) and standard error (`System.err`) to log files for debugging and record-keeping, in addition to displaying it on the console. [cite: 8]
-* **Interactive Quiz**: Engages the user with a series of questions about Java and the SF Giants to win a prize. [cite: 29, 30, 31, 32, 33, 35]
+* [cite_start]**Interactive Chat Session**: Simulates a complete, menu-driven conversation, gathering user information and guiding them through the application's features. [cite: 11]
+* [cite_start]**Dynamic User Configuration**: Allows the user to select their preferred language (English or a placeholder "Alien") and time zone (PST/EST) at startup. [cite: 2, 7]
+* [cite_start]**Rich Object-Oriented Design**: Utilizes a well-defined class hierarchy to model real-world entities like `Person`, `Player`, `Student`, `Club`, and `University`, showcasing principles of inheritance and polymorphism.
+* [cite_start]**ASCII Art Card Generation**: Dynamically creates and displays stylized "Thank You" cards based on user input for the recipient, message, and a chosen art symbol. [cite: 24, 27]
+* [cite_start]**Comprehensive Logging System**: Redirects all standard output (`System.out`) and standard error (`System.err`) to log files for debugging and record-keeping, in addition to displaying it on the console. [cite: 8]
+* [cite_start]**Interactive Quiz**: Engages the user with a series of questions about Java and the SF Giants to win a prize. [cite: 29, 30, 31, 32, 33, 35]
 
 ## How to Compile and Run
 
@@ -59,4 +59,3 @@ The project is composed of several classes, each with a specific responsibility.
 * **Durand Dyer**
 * **Ian**
 
-***
