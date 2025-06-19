@@ -17,6 +17,9 @@ import java.util.List;
 
 public final class Club extends Organization {
 
+    private static final StringBuilder sb = new StringBuilder();
+
+
     //
     // Instance Data Fields
     //
@@ -37,11 +40,14 @@ public final class Club extends Organization {
     //
     // Constructors
     //
+
+
     public Club() {
+
     }
 
 
-    public Club(String defaultClub) {
+    public Club(String name) {
         this.name = "San Francisco Giants";
         this.shortName = "SF Giants";
         this.establishedOn = 1813;
@@ -51,20 +57,35 @@ public final class Club extends Organization {
         this.nationalLeaguePennants = 23;
         this.divisionTitles = 8;
         this.wildCardBerths = 3;
-        this.teamOwners = new OwnerGroup();
+
+
+//        this.teamOwners = new OwnerGroup().setName("San Francisco Baseball Association LLC").setClub(this);
 
         // downcasting because they come in as Person objects
-        this.teamPresident = (President) new President().setFirstName("Farhan").setLastName("Zaidi");
-        this.teamGeneralManager = (GeneralManager) new GeneralManager().setFirstName("Scott").setLastName("Harris");
-        this.manager = (Manager) new Manager().setFirstName("Gabe").setLastName("Kapler");
+//        this.teamPresident = (President) new President().setFullName("Farhan", "Zadai");
+//        this.teamGeneralManager = new GeneralManager("Scott", "Harris");
+//        this.manager = new Manager("Gabe", "Kepler");
     }
 
+    public President getTeamPresident() {
+        return this.teamPresident;
+    } public GeneralManager getTeamGeneralManager() {
+        return this.teamGeneralManager;
+    } public Manager getTeamManager() {
+        return this.manager;
+    }
     public static String getOfficialSong() {
         return "Yahoo";
     }
 
     @Override
     public void displayAbout() {
+        System.out.println(displayClub());
+    }
+
+    public String displayClub() {
+//        sb.append("Club: ").append(new Club().displayClub());
+        return null;
 
     }
 
@@ -111,14 +132,6 @@ public final class Club extends Organization {
 
     public OwnerGroup getTeamOwners() {
         return this.teamOwners;
-    }
-
-    public President getTeamPresident() {
-        return this.teamPresident;
-    }
-
-    public GeneralManager getTeamGeneralManager() {
-        return this.teamGeneralManager;
     }
 
     public Manager getManager() {
