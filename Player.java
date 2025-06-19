@@ -83,6 +83,24 @@ public final class Player extends Person {
         return this.mlbDebut;
     }
 
+    private String talk(){
+        sb.setLength(0);
+        sb.append(String.format("%s%s %d%s", this.getFullName(), ",", this.getJerseyNumber(), ": "));
+        return sb.toString();
+    }
+
+    public String congratulateStudent(String studentFirstName) {
+        sb.setLength(0);
+        sb.append(String.format("%s%s %s%s%s", talk(), "Hello", studentFirstName, ". ", "C-O-N-G-R-A-T-U-L-A-T-I-O-N-S!"));
+        return sb.toString();
+    }
+
+    public String sayStudentUniversity(String studentUniversity) {
+        sb.setLength(0);
+        sb.append(String.format("%s%s%s%s", talk(), studentUniversity.toUpperCase(), ". ", "Way to go!"));
+        return sb.toString();
+    }
+
     public Player setClub(Club club) {
         this.club = club;
         return this;
@@ -107,19 +125,13 @@ public final class Player extends Person {
         this.mlbDebut = mlbDebut;
         return this;
     }
-    //
-    // Language
-    //
-
-    //
-    // @Override
-    //
     @Override
     public void sayGreeting(String string) {
     }
 
     @Override
     public String toString() {
+        sb.setLength(0);
         sb.append(String.format("%-25s %-50s %n", this.getClass().getSimpleName(), this.getFullName()));
         sb.append(String.format("%-25s %-50s%n", "Club:", this.getClub().getName()));
         sb.append(String.format("%-25s %-50s%n", "Position:", this.getPosition()));
@@ -128,7 +140,7 @@ public final class Player extends Person {
         sb.append(String.format("%-25s %-50s%n", "Throws:", this.getSideThrows()));
         sb.append(String.format("%-25s %-50s%n", "MLB Debut:", this.getMlbDebut()));
         sb.append("-".repeat(WIDTH)).append("\n"); // maybe String.format
-        sb.append(String.format("%s", "....."));
+        sb.append(String.format("%s", ". . . . ."));
         return sb.toString();
 
     }

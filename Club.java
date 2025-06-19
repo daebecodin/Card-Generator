@@ -216,7 +216,7 @@ public final class Club extends Organization {
     public String connectPlayerIntro() {
         sb.setLength(0);
         sb.append("\n");
-        sb.append(String.format("%s %s %s%n", this.getShortName(), ": ", "We are connecting you with our player...")).append(String.format("%s%n", "....."));
+        sb.append(String.format("%s %s %s%n", this.getShortName(), ": ", "We are connecting you with our player...")).append(String.format("%s%n", ". . . . ."));
         sb.append("-".repeat(WIDTH));
         return sb.toString();
     }

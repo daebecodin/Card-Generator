@@ -103,6 +103,8 @@ public final class ChatSession {
                 .setMascot("Gator")
                 .setWebsite("www.sfsu.edu");
 
+        student.setUniversity(university);
+
 
         String universityInfo = university.toString();
         System.out.println(universityInfo);
@@ -120,6 +122,13 @@ public final class ChatSession {
         System.out.println(connectPlayerIntro);
         String playerInfo = player.toString();
         System.out.println(playerInfo);
+
+
+        sb.setLength(0);
+        sb.append(String.format("%s%n", player.congratulateStudent(student.getFirstName())));
+        sb.append(String.format("%s%n", player.sayStudentUniversity(student.getUniversity().getOfficialName())));
+        sb.append(String.format("%s%n", student.talk()));
+        System.out.println(sb);
     }
     private void runQuiz() {
     }
