@@ -26,6 +26,9 @@ public final class President extends Person {
     public President() {
     }
 
+    public President(String firstName, String lastName) {
+        super(firstName, lastName);
+    }
     public President(String firstName, String lastName, FrontOffice frontOffice, Club club) {
         super(firstName, lastName);
         this.frontOffice = frontOffice;
@@ -39,9 +42,8 @@ public final class President extends Person {
     public President(FrontOffice frontOffice) {
         this.frontOffice = frontOffice;
     }
-    public President(Club club) {
-        this.club = club;
-    }
+
+
 
     //
     // Instance Methods

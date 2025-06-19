@@ -36,7 +36,7 @@ public final class Player extends Person {
     private static final StringBuilder sb = new StringBuilder();
 
     // Instance Data Fields
-    private Club club;
+    private Club club = new Club("sf giants");
     private String position;
     private int jerseyNumber;
     private int totalBats;
@@ -49,7 +49,7 @@ public final class Player extends Person {
     }
 
     public Player(String firstName, String lastName, Club club, String position, int jerseyNumber, int totalBats, int totalThrows, int mlbDebut) {
-        super(firstName, lastName);
+        super("Buster", "Posey");
         this.club = club;
         this.position = position;
         this.jerseyNumber = jerseyNumber;
@@ -61,9 +61,10 @@ public final class Player extends Person {
     //
     // Instance Methods
     //
+
     public StringBuilder display() {
         sb.append(this.getClass().getSimpleName()).append(": ").append(this.getFullName());
-        sb.append(String.format("%-25s %-50s", "Club:", this.getClub()));
+        sb.append(String.format("%-25s %-50s", "Club:", this.getClub().getName()));
         sb.append(String.format("%-25s %-50s", "Position:", this.getPosition()));
         sb.append(String.format("%-25s %-50s", "Number:", this.getJerseyNumber()));
         sb.append(String.format("%-25s %-50s", "Bats:", this.getTotalBats()));

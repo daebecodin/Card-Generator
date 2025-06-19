@@ -16,11 +16,35 @@ public final class OwnerGroup extends Organization{
     //
     // Data fields
     //
-
+    private String name;
+    private Club club;
     //
     // Constructors
     //
     public OwnerGroup() {
+    }
+
+    public OwnerGroup(String name, Club club) {
+        this.name = name;
+        this.club = club;
+    }
+
+    public Club getClub() {
+        return club;
+    }
+
+    public OwnerGroup setClub(Club club) {
+        this.club = club;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public OwnerGroup setName(String name) {
+        this.name = name;
+        return this;
     }
 
     @Override
@@ -40,4 +64,12 @@ public final class OwnerGroup extends Organization{
     //
     // Override
     //
+
+    @Override
+    public String toString() {
+        return "{" +
+                "name='" + name + '\'' +
+                ", club=" + club +
+                "} " + super.toString();
+    }
 }
