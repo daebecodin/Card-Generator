@@ -17,6 +17,7 @@ import java.util.List;
 
 public final class Student extends Person {
 
+    private static final int WIDTH = 70;
     //
     // Instance Data Fields
     //
@@ -28,6 +29,9 @@ public final class Student extends Person {
     // Constructors
     //
     public Student() {
+    }
+    public Student(String name) {
+        super(name);
     }
     public Student(String email, List<Card> cards, University university) {
         this.email = email;
