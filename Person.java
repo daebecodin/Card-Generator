@@ -30,9 +30,14 @@ public sealed abstract class Person implements Greeting permits Student, Player,
     //
     public Person() {
     }
+    public Person(String name) {
+        this.fullName = name;
+    }
 
     public Person(String firstName, String lastName) {
-
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.fullName = firstName + lastName;
     }
 
     // Instance Methods
