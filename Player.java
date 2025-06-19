@@ -34,13 +34,14 @@ public final class Player extends Person {
 //        System.out.println(sb);
 //    }
     private static final StringBuilder sb = new StringBuilder();
+    private static final int WIDTH = 70;
 
     // Instance Data Fields
-    private Club club = new Club("sf giants");
+    private Club club;
     private String position;
     private int jerseyNumber;
-    private int totalBats;
-    private int totalThrows;
+    private String bats;
+    private String sideThrows;
     private int mlbDebut;
     //
     // Constructors
@@ -48,34 +49,21 @@ public final class Player extends Person {
     public Player() {
     }
 
-    public Player(String firstName, String lastName, Club club, String position, int jerseyNumber, int totalBats, int totalThrows, int mlbDebut) {
-        super("Buster", "Posey");
+    public Player(String firstName, String lastName) {
+        super(firstName, lastName);
+    }
+
+    public Player(String firstName, String lastName, Club club, String position, int jerseyNumber, String bats, String sideThrows, int mlbDebut) {
+        super(firstName, lastName);
         this.club = club;
         this.position = position;
         this.jerseyNumber = jerseyNumber;
-        this.totalBats = totalBats;
-        this.totalThrows = totalThrows;
+        this.bats = bats;
+        this.sideThrows = sideThrows;
         this.mlbDebut = mlbDebut;
     }
 
-    //
-    // Instance Methods
-    //
 
-    public StringBuilder display() {
-        sb.append(this.getClass().getSimpleName()).append(": ").append(this.getFullName());
-        sb.append(String.format("%-25s %-50s", "Club:", this.getClub().getName()));
-        sb.append(String.format("%-25s %-50s", "Position:", this.getPosition()));
-        sb.append(String.format("%-25s %-50s", "Number:", this.getJerseyNumber()));
-        sb.append(String.format("%-25s %-50s", "Bats:", this.getTotalBats()));
-        sb.append(String.format("%-25s %-50s", "Throws:", this.getTotalThrows()));
-        sb.append(String.format("%-25s %-50s", "MLB Debut:", this.getMlbDebut()));
-
-        return sb;
-    }
-    //
-    // Additional Instance Methods
-    //
     public Club getClub() {
         return this.club;
     }
@@ -85,11 +73,11 @@ public final class Player extends Person {
     public int getJerseyNumber() {
         return this.jerseyNumber;
     }
-    public int getTotalBats() {
-        return this.totalBats;
+    public String getBats() {
+        return this.bats;
     }
-    public int getTotalThrows() {
-        return this.totalThrows;
+    public String getSideThrows() {
+        return this.sideThrows;
     }
     public int getMlbDebut() {
         return this.mlbDebut;
@@ -107,12 +95,12 @@ public final class Player extends Person {
         this.jerseyNumber = jerseyNumber;
         return this;
     }
-    public Player setTotalBats(int totalBats) {
-        this.totalBats = totalBats;
+    public Player setBats(String bats) {
+        this.bats = bats;
         return this;
     }
-    public Player setTotalThrows(int totalThrows) {
-        this.totalThrows = totalThrows;
+    public Player setSideThrows(String sideThrows) {
+        this.sideThrows = sideThrows;
         return this;
     }
     public Player setMlbDebut(int mlbDebut) {
@@ -132,12 +120,16 @@ public final class Player extends Person {
 
     @Override
     public String toString() {
-        return "{" +
-                "club=" + club +
-                ", position='" + position + '\'' +
-                ", jerseyNumber=" + jerseyNumber +
-                ", totalBats=" + totalBats +
-                ", totalThrows=" + totalThrows +
-                "} " + super.toString();
+        sb.append(String.format("%-25s %-50s %n", this.getClass().getSimpleName(), this.getFullName()));
+        sb.append(String.format("%-25s %-50s%n", "Club:", this.getClub().getName()));
+        sb.append(String.format("%-25s %-50s%n", "Position:", this.getPosition()));
+        sb.append(String.format("%-25s %-50s%n", "Number:", this.getJerseyNumber()));
+        sb.append(String.format("%-25s %-50s%n", "Bats:", this.getBats()));
+        sb.append(String.format("%-25s %-50s%n", "Throws:", this.getSideThrows()));
+        sb.append(String.format("%-25s %-50s%n", "MLB Debut:", this.getMlbDebut()));
+        sb.append("-".repeat(WIDTH)).append("\n"); // maybe String.format
+        sb.append(String.format("%s", "....."));
+        return sb.toString();
+
     }
 }
