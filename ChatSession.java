@@ -13,70 +13,113 @@ package assignment02PartB;
 // Please make sure to read the provided "_ListOf-PleaseDoNotChange.txt"
 
 import java.util.List;
+import java.util.Scanner;
 
 public final class ChatSession {
 
-    //  Static Data Fields
-    private Club club = new Club("sf giants");
-    private University university = new University();
+    private Club club;
+    private University university;
+    private final Student student = new Student();
+    private final Player player = new Player("Buster", "Posey");
     private static final int WIDTH = 70;
     private static final StringBuilder sb = new StringBuilder();
-    //
-    // Instance Data Fields
-    //
-    // Constructors
-    //
+    private static final Scanner input = new Scanner(System.in);
+
     public ChatSession() {
     }
 
     public ChatSession(Club club, University university) {
         this.club = club;
         this.university = university;
+//        this.student = student;
+//        this.player = player;
     }
 
-    //
-    // Instance Methods
-    //
 
-    //
-    // Additional Instance Methods
-    //
     private void startChatSession() {
-        if (Language.getLocale().equalsIgnoreCase("alien")) {
-            System.out.println(Timer.timeStamp() + " - " + Language.getAlienSound());
-        } else {
-            System.out.println(Timer.timeStamp() + " - Chat Session Started");
-        }
-        sb.append(club.getShortName()).append(":").append("Welcome to the ").append(club.getName().toUpperCase()).append("!").append("\n");
-        sb.append("-".repeat(WIDTH)).append("\n");
-        System.out.println();
-        Club club = new Club()
+
+        sb.setLength(0);
+        sb.append(String.format("%s%s", Timer.timeStamp(), " - Chat Session Started "));
+        club
                 .setName("San Francisco Giants")
                 .setShortName("SF Giants")
                 .setEstablishedOn(1883)
-                .setTeamColors(List.of("orange", "black", "gold", "cream"))
+                .setTeamColors("Orange", "Black", "Gold", "Cream")
                 .setTeamBallPark("Oracle Park")
                 .setWorldSeriesTitles(8)
                 .setNationalLeaguePennants(23)
                 .setDivisionTitles(8)
                 .setWildCardBerths(3)
                 .setTeamOwners(new OwnerGroup("San Francisco Baseball Association", this.getClub()))
+
                 .setTeamPresident(new President("Farhan", "Zadai"))
                 .setTeamGeneralManager(new GeneralManager("Scott", "Harris"))
                 .setManager(new Manager("Gabe", "Kepler"));
 
-        sb.append(String.format("%-25s %-50s%n", "Club:", club.getName())).append("\n");
 
-        System.out.println(sb);
-
-
-
-
-
+        // TODO: make these methods
+        String clubIntro = club.clubIntro();
+        System.out.println(clubIntro);
+        String clubInfo = club.toString();
+        System.out.println(clubInfo);
     }
     private void connectChatters() {
+
+        // TODO: make these methods for student
+        sb.setLength(0);
+        sb.append(String.format("%s%s%s", club.getShortName(), ": ", "Your first name and last name, please: "));
+        System.out.print(sb);
+        String firstName = input.next();
+        String lastName = input.next();
+        student.setFirstName(firstName);
+        student.setLastName(lastName);
+
+
+        // TODO: make these methods for student
+        sb.setLength(0);
+        sb.append(String.format("%s%s%s", club.getShortName(), ": ", "Your school email address, please: "));
+        System.out.print(sb);
+        String email = input.next();
+        student.setEmail(email);
+
+        System.out.println();
+
+        // TODO: make these methods student
+        sb.setLength(0);
+        sb.append(String.format("%s%s%n",student.getFullName(), ": Welcome to my university!"));
+        sb.append("-".repeat(WIDTH));
+        System.out.println(sb);
+
+        university
+                .setOfficialName("San Francisco State University")
+                .setMottoInLatin("Experientia Docet")
+                .setMottoInEnglish("Experience Teaches")
+                .setType("Public")
+                .setYearOfEstablishment(1999)
+                .setLocation("San Francisco, California, United States")
+                .setAddress("1600 Holloway Avenue, San Francisco, CA 94132 ")
+                .setUniversityColors(List.of("Purple", "Gold"))
+                .setNickName("Gators")
+                .setMascot("Gator")
+                .setWebsite("www.sfsu.edu");
+
+
+        String universityInfo = university.toString();
+        System.out.println(universityInfo);
+
     }
     private void chat() {
+
+        player.setClub(club)
+                .setPosition("Catcher")
+                .setJerseyNumber(28)
+                .setBats("Right")
+                .setSideThrows("Right")
+                .setMlbDebut(2009);
+        String connectPlayerIntro = club.connectPlayerIntro();
+        System.out.println(connectPlayerIntro);
+        String playerInfo = player.toString();
+        System.out.println(playerInfo);
     }
     private void runQuiz() {
     }
@@ -84,12 +127,9 @@ public final class ChatSession {
     }
     public void runChatSession() {
         startChatSession();
+        connectChatters();
+        chat();
     }
-
-    //
-    // Language
-    //
-
 
     public Club getClub() {
         return this.club;
@@ -108,4 +148,5 @@ public final class ChatSession {
        this.university = university;
         return this;
     }
+
 }
