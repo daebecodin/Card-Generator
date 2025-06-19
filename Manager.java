@@ -29,6 +29,20 @@ public final class Manager extends Person {
         this.frontOffice = frontOffice;
     }
 
+    public Manager(String firstName, String lastName) {
+        super(firstName, lastName);
+    }
+
+    public FrontOffice getFrontOffice() {
+        return frontOffice;
+    }
+
+    public Manager setFrontOffice(FrontOffice frontOffice) {
+        this.frontOffice = frontOffice;
+        return this;
+    }
+
+
     @Override
     public void sayGreeting(String string) {
 

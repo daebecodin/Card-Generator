@@ -30,6 +30,9 @@ public final class GeneralManager extends Person {
         this.frontOffice = frontOffice;
     }
 
+    public GeneralManager(String scott, String harris) {
+    }
+
     public FrontOffice getFrontOffice() {
         return frontOffice;
     }
