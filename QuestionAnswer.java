@@ -17,17 +17,39 @@ public final class QuestionAnswer {
     //
     // Instance Data Fields
     //
+    private final String questionText;
+    private final String correctAnswer;
+
 
     //
     // Constructors
     //
-    public QuestionAnswer() {
+    public QuestionAnswer(String questionText, String correctAnswer) {
+        this.questionText = questionText;
+        this.correctAnswer = correctAnswer;
+    }
+
+    public String getQuestionText() {
+        return questionText;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 
     //
-    // Instance Method
-    //
+    // Use of ternary operator as recommended by Duran.
+    // This trims any whitespace around userAnswer and compares it with the correct answer
+    //   regardless of case. "?" is a quick inject to return Correct if T or Oops if F (T/F)
+    // -Ian
 
+    public String checkAnswer(String userAnswer) {
+        return correctAnswer.equalsIgnoreCase(userAnswer.trim()) ? " Correct!" : " Oops...";
+    }
+
+    public static String winCheck() {
+        return null;
+    }
     //
     // Language
     //
