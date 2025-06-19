@@ -26,6 +26,7 @@ public final class President extends Person {
     public President() {
     }
 
+
     public President(String firstName, String lastName) {
         super(firstName, lastName);
     }
@@ -63,6 +64,9 @@ public final class President extends Person {
         this.club = club;
         return this;
     }
+
+
+
     //
     // Language
     //
@@ -82,6 +86,7 @@ public final class President extends Person {
                 ", club=" + club +
                 '}';
     }
+
 }
 
 
