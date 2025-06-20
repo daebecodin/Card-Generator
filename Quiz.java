@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import static java.lang.System.out;
-// I don't want to write System a bunch of time so I did that here
+// I don't want to write System a bunch of time, so I did that here
 
 public final class Quiz {
 
@@ -24,12 +24,13 @@ public final class Quiz {
     //
     // Instance Data Fields
     //
-    private String shortName;
+    private String clubName;
     private String quizTitle;
-    private final List<QuestionAnswer> questions;
+    private  List<QuestionAnswer> questions = new ArrayList<>();
     private String winMessage;
     private String loseMessage;
     private int allowedMisses;
+    private String studentName;
 
 
 
@@ -38,19 +39,55 @@ public final class Quiz {
     //
     // Constructors
     //
+
+
     public Quiz() {
-        this.questions = new ArrayList<>();
-        this.shortName = "SF Giants";
-        this.quizTitle = "*** FREE TICKETS to SF GIANTS Games *** _ 1 miss allowed _";
-        this.winMessage = "*** Congrats! You won FREE TICKETS to SF GIANTS Games ***";
-        this.loseMessage = "____ Please try again at your graduation ceremony. ____";
-        this.allowedMisses = 1;
     }
+
+    public Quiz(String clubName, String quizTitle, List<QuestionAnswer> questions, String winMessage, String loseMessage, int allowedMisses, String studentName) {
+        this.clubName = clubName;
+        this.quizTitle = quizTitle;
+        this.questions = questions;
+        this.winMessage = winMessage;
+        this.loseMessage = loseMessage;
+        this.allowedMisses = allowedMisses;
+        this.studentName = studentName;
+    }
+
+
     //
     // Setter section
     //
-    public Quiz setShortName(String shortName) {
-        this.shortName = shortName;
+
+
+    public List<QuestionAnswer> getQuestions() {
+        return this.questions;
+    }
+
+    public String getLoseMessage() {
+        return loseMessage;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public Quiz setStudentName(String studentName) {
+        this.studentName = studentName;
+        return this;
+    }
+
+    public String getClubName() {
+        return clubName;
+    }
+
+    public Quiz setClubName(String clubName) {
+        this.clubName = clubName;
+        return this;
+    }
+
+    public Quiz setShortName(String clubName) {
+        this.clubName = clubName;
         return this;
     }
 
@@ -89,7 +126,7 @@ public final class Quiz {
     //
     //Getter section
     //
-    public String getShortName() {return this.shortName;}
+    public String getShortName() {return this.clubName;}
 
     public String getWinMessage() {return this.winMessage;}
 
@@ -101,8 +138,8 @@ public final class Quiz {
     // Instance Method
     // runQuiz method to be used in ChatSession
     //
-    public void runQuiz(String userName) {
-        out.println(shortName + ": " + quizTitle);
+    public String runQuiz(Club club, Student student)  {
+        sb.append(club.getShortName()).append(": ").append(this.quizTitle);
         //
         // Opening and setting up Quiz for User
         //
@@ -117,40 +154,42 @@ public final class Quiz {
                 firstQuestion = false;
             }
 
-            out.println(shortName + ": " + qa.getQuestionText());
-            out.print(userName + ": ");
-            String userAnswer = input.nextLine();
+            sb.append(club.getShortName()).append(": ").append(qa.getQuestionText());
+            sb.append(student.getFullName()).append(": ");
+            String userAnswer = input.next();
+            input.nextLine();
 
             String result = qa.checkAnswer(userAnswer);
-            out.print(shortName + ": " + result);
+            sb.append(club.getShortName()).append(": ").append(result);
 
             if (result.equals("Oops...")) {
                 oopsAnswers++;
             }
         }
 
-        out.println();
-        //
+        sb.append("\n");
+
         // Closed quiz loop
         // Posting final results
         //
         if (oopsAnswers <= allowedMisses) {
-            out.println(shortName + winMessage);
+            out.println(clubName + winMessage);
         } else {
-            out.println(shortName + loseMessage);
+            out.println(clubName + loseMessage);
         }
         input.close();
 
-        out.printf("%s%s", Timer.timeStamp(), " - Chat Session Ended ");
+        sb.append(String.format("%s%s", Timer.timeStamp(), " - Chat Session Ended "));
+        return sb.toString();
+    }
+
+
+    @Override
+    public String toString() {
+        return String.format("%s%s %s _ %s misses allowed _", this.clubName, ":", this.quizTitle, this.allowedMisses);
+
     }
 }
 
 
 
-//
-// Additional Instance Methods
-//
-
-//
-// Language
-//

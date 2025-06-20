@@ -30,11 +30,11 @@ public final class QuestionAnswer {
     }
 
     public String getQuestionText() {
-        return questionText;
+        return this.questionText;
     }
 
     public String getCorrectAnswer() {
-        return correctAnswer;
+        return this.correctAnswer;
     }
 
     //

@@ -22,6 +22,7 @@ public final class ChatSession {
     private University university;
     private final Student student = new Student();
     private final Player player = new Player("Buster", "Posey");
+    private final Quiz quiz = new Quiz();
     private static final int WIDTH = 70;
     private static final StringBuilder sb = new StringBuilder();
     private static final Scanner input = new Scanner(System.in);
@@ -174,40 +175,31 @@ public final class ChatSession {
         for (Card card : cards) {
             card.displayCard();
         }
+        sb.append("\n");
+
+        // student.sayThankyou
+        // player.sayGoodbye
+        runQuiz();
     }
     private void runQuiz() {
-        Quiz giantsQuiz = new Quiz()
-                .setQuizTitle("*** FREE TICKETS to SF GIANTS Games *** _ 1 miss allowed _")
+
+        quiz
+                .setClubName(club.getShortName()) // Set club name from the ChatSession's club object
+                .setQuizTitle("*** FREE TICKETS to SF GIANTS Games ***")
                 .setWinMessage("*** Congrats! You won FREE TICKETS to SF GIANTS Games ***")
                 .setLoseMessage("____ Please try again at your graduation ceremony. ____")
                 .setAllowedMisses(1)
-                .addQuestion("Which type of class has 'protected' constructors?",
-                        "abstract")
-                .addQuestion("What type of method did Java 8 add to 'interface'?",
-                        "default")
-                .addQuestion("What new keyword did Java 13 add to 'switch' statement?",
-                        "yield")
-                .addQuestion("In Java 15, what keyword pairs with 'sealed'?",
-                        "permits")
-                .addQuestion("Giants in Spanish?",
-                        "Gigantes")
-                .addQuestion("Take me out to the...?",
-                        "Ball Game");
-        //
-        // Figuring out rn for student name
-        //
+                .addQuestion("Which type of class has 'protected' constructors?", "abstract")
+                .addQuestion("What type of method did Java 8 add to 'interface'?", "default")
+                .addQuestion("What new keyword did Java 13 add to 'switch' statement?", "yield")
+                .addQuestion("In Java 15, what keyword pairs with 'sealed'?", "permits")
+                .addQuestion("Giants in Spanish?", "Gigantes")
+                .addQuestion("Take me out to the...?", "Ball Game");
 
-        String tempUserName = "Test";
-        giantsQuiz.runQuiz(tempUserName);
+        System.out.println(quiz.runQuiz(club, student));
 
     }
-    public void testQuizSession() {
-        runQuiz();
-    }
-    public static void main(String[] args) {
-        ChatSession session = new ChatSession();
-        session.testQuizSession();
-    }
+
     private void stopChatSession() {
     }
     public void runChatSession() {
