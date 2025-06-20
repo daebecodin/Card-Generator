@@ -83,7 +83,7 @@ public final class Player extends Person {
         return this.mlbDebut;
     }
 
-    private String talk(){
+    public String talk(){
 //        StringBuilder localSb = new StringBuilder(); // local string builder because so we don't update shared string builder for messages
 //        localSb.setLength(0);
 //        localSb.append(String.format("%s%s %d%s", this.getFullName(), ",", this.getJerseyNumber(), ": "));
@@ -111,6 +111,15 @@ public final class Player extends Person {
     public String askForNumberOfCards() {
         sb.setLength(0);
         sb.append(String.format("%s%s%n", talk(), "How many SF Giants Thank You cards would you like to order?"));
+        return sb.toString();
+    }
+
+    public String getCardDetails(int numberOfCards) {
+        sb.setLength(0);
+        sb.append(String.format("%s %s %d %s%n", this.talk(), "In", numberOfCards, "lines, please provide"));
+        sb.append(String.format("%s%s%n", "\t", "[1] Recipients name"));
+        sb.append(String.format("%s%s%n", "\t", "[2] Art symbol (a character)"));
+        sb.append(String.format("%s%s%n", "\t", "[3] Message to recipient"));
         return sb.toString();
     }
 
