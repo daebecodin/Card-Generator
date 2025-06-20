@@ -1,0 +1,21 @@
+# Java compiled output
+*.class
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Build output directory
+/out/
+/build/
+/target/
+
+# Log files, dependencies, etc. (common for Java)
+*.log
+.classpath
+.project
+.settings/
+bin/
+tmp/
