@@ -127,8 +127,22 @@ public final class ChatSession {
         sb.setLength(0);
         sb.append(String.format("%s%n", player.congratulateStudent(student.getFirstName())));
         sb.append(String.format("%s%n", player.sayStudentUniversity(student.getUniversity().getOfficialName())));
-        sb.append(String.format("%s%n", student.talk()));
-        System.out.println(sb);
+        System.out.print(sb);
+
+        System.out.print(student.talk());
+        String studentFirstResponse = input.next();
+        input.nextLine();
+
+        sb.setLength(0);
+        sb.append(String.format("%s", player.replyToStudent(student.getFirstName())));
+        sb.append(String.format("%s", player.askForNumberOfCards()));
+        System.out.print(sb);
+
+        System.out.print(student.talk());
+        int numberOfCards = input.nextInt();
+        input.nextLine();
+        System.out.println(numberOfCards);
+
     }
     private void runQuiz() {
     }

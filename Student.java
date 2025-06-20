@@ -14,6 +14,7 @@ package assignment02PartB;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public final class Student extends Person {
 
@@ -42,9 +43,9 @@ public final class Student extends Person {
 
 
     public String talk() {
-        sb.setLength(0);
-        sb.append(String.format("%s %s", this.getFullName(), ":"));
-        return sb.toString();
+//        sb.setLength(0);
+//        sb.append(String.format("%s%s", this.getFullName(), ": "));
+        return (String.format("%s%s", this.getFullName(), ": "));
     }
 
     public String getEmail() {

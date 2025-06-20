@@ -84,9 +84,10 @@ public final class Player extends Person {
     }
 
     private String talk(){
-        sb.setLength(0);
-        sb.append(String.format("%s%s %d%s", this.getFullName(), ",", this.getJerseyNumber(), ": "));
-        return sb.toString();
+//        StringBuilder localSb = new StringBuilder(); // local string builder because so we don't update shared string builder for messages
+//        localSb.setLength(0);
+//        localSb.append(String.format("%s%s %d%s", this.getFullName(), ",", this.getJerseyNumber(), ": "));
+        return String.format("%s%s %d%s", this.getFullName(), ",", this.getJerseyNumber(), ": ");
     }
 
     public String congratulateStudent(String studentFirstName) {
@@ -98,6 +99,18 @@ public final class Player extends Person {
     public String sayStudentUniversity(String studentUniversity) {
         sb.setLength(0);
         sb.append(String.format("%s%s%s%s", talk(), studentUniversity.toUpperCase(), ". ", "Way to go!"));
+        return sb.toString();
+    }
+
+    public String replyToStudent(String studentName) {
+        sb.setLength(0);
+        sb.append(String.format("%s%s%s%s %s%n", talk(), "Likewise, ", studentName, ".", "Very nice chatting w/ you."));
+        return sb.toString();
+    }
+
+    public String askForNumberOfCards() {
+        sb.setLength(0);
+        sb.append(String.format("%s%s%n", talk(), "How many SF Giants Thank You cards would you like to order?"));
         return sb.toString();
     }
 
