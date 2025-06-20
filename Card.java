@@ -14,22 +14,43 @@ package assignment02PartB;
 
 public final class Card {
 
-    //
-    // Instance Data Fields
-    //
-    private int artSize = 0;     // Please change artSize, if needed, to get an identical output
-    private String artFont = ""; // Please change artFont, if needed, to get an identical output
+    private String recipientName;
+    private char artSymbol;
+    private String message;
+    private String senderName;
+    private String senderEmail;
+    private int artSize = 16;     // Please change artSize, if needed, to get an identical output
+    private String artFont = "Courier"; // Please change artFont, if needed, to get an identical output
 
-    //
-    // Constructors
-    //
     public Card() {
     }
 
-    //
-    // Instance Methods
-    //
+    public Card(String recipientName, char artSymbol, String message, String senderName, String senderEmail, int artSize, String artFont) {
+        this.recipientName = recipientName;
+        this.artSymbol = artSymbol;
+        this.message = message;
+        this.senderName = senderName;
+        this.senderEmail = senderEmail;
+        this.artSize = artSize;
+        this.artFont = artFont;
+    }
 
+    public void displayCard() {
+        try {
+            SFGiantsCardGenerator.generateSFGiantsCard(
+                    message,
+                    senderName,
+                    senderEmail,
+                    recipientName,
+                    artSymbol,
+                    artSize,
+                    artFont
+            );
+            System.out.println();
+        } catch (Exception e) {
+            System.err.println("cannot print card");
+        }
+    }
     //
     // Additional Instance Methods
     //

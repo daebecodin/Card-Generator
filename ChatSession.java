@@ -12,6 +12,7 @@ package assignment02PartB;
 // Please organize all the given files in 1 same package
 // Please make sure to read the provided "_ListOf-PleaseDoNotChange.txt"
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -141,8 +142,38 @@ public final class ChatSession {
         System.out.print(student.talk());
         int numberOfCards = input.nextInt();
         input.nextLine();
-        System.out.println(numberOfCards);
 
+
+        sb.setLength(0);
+        System.out.print(player.getCardDetails(numberOfCards));
+
+        ArrayList<Card> cards = new ArrayList<>();
+        int defaultArtSize = 13;
+        String defaultArtFont = "Courier";
+
+        for (int i = 0; i < numberOfCards; i++) {
+            System.out.println(player.talk() + "Card #" + (i + 1) + ":");
+
+            System.out.print(student.talk() + "[1] ");
+            String recipient = input.next();
+            input.nextLine();
+
+            System.out.print(student.talk() + "[2] ");
+            String artSymbolInput = input.next();
+            char artSymbol = artSymbolInput.charAt(0);
+            input.nextLine();
+
+            System.out.print(student.talk() + "[3] ");
+            String cardMessage = input.next();
+            input.nextLine();
+
+            cards.add(new Card(recipient, artSymbol, cardMessage, student.getFirstName(), student.getEmail(), defaultArtSize, defaultArtFont));
+        }
+
+        System.out.println("\n" + player.talk() + "Thanks " + student.getFirstName() + ". Please confirm your order");
+        for (Card card : cards) {
+            card.displayCard();
+        }
     }
     private void runQuiz() {
         Quiz giantsQuiz = new Quiz()
