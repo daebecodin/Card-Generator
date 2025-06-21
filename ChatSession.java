@@ -61,7 +61,6 @@ public final class ChatSession {
                 .setManager(new Manager("Gabe", "Kepler"));
 
 
-
         sb.append(String.format("%s%s", Timer.timeStamp(), " - Chat session started"));
         System.out.println(sb); // printing current items in buffer
 
@@ -71,6 +70,7 @@ public final class ChatSession {
         String clubInfo = club.toString();
         System.out.println(clubInfo);
     }
+
     private void connectChatters() {
 
 
@@ -95,7 +95,7 @@ public final class ChatSession {
 
         // TODO: make these methods student
         sb.setLength(0);
-        sb.append(String.format("%s%s%n",student.getFullName(), ": Welcome to my university!"));
+        sb.append(String.format("%s%s%n", student.getFullName(), ": Welcome to my university!"));
         sb.append("-".repeat(WIDTH));
         System.out.println(sb);
 
@@ -122,12 +122,15 @@ public final class ChatSession {
 
     /**
      * Handles getting the number of cards from the user with retries.
+     *
      * @return The number of cards entered by the user, or 1 if input is invalid after 3 tries.
      */
+
+
     private int getNumberOfCards() {
         int numberOfCards = 1;    // default
-        int tries          = 4;
-        // 1) always print prompt once here:
+        int tries = 4;
+
         System.out.print(student.talk());
         while (tries > 0) {
 
@@ -136,27 +139,28 @@ public final class ChatSession {
 //            String line = input.nextLine();
             // 2) check before you read
             try {
+
 //                numberOfCards = Integer.parseInt(line.trim());
                 numberOfCards = input.nextInt();
                 return numberOfCards;
-            } catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 input.nextLine(); // consumes invalid input
                 tries--;
 
 //                System.out.flush();
-
-                System.err.println("Please enter an INTEGER. "
-                        + tries + " tries left.");
-                System.err.println(e.getClass().getName());
+                System.err.println(e.getClass().getName()); // print err stream first bc it wants to print last; javan will place the following out stream statements before it
                 System.err.flush();
-//                System.err.flush();
-//                System.out.println(e.getClass().getName());
-//                System.out.flush();
+                System.out.println("Please enter an INTEGER. "
+                        + tries + " tries left.");
+
+
+                if (tries > 0) {
+
+                    System.out.print(student.talk());
+                }
             }
         }
 
-        System.out.println(student.talk());
-        System.out.flush();
         return numberOfCards;
     }
 
@@ -171,9 +175,9 @@ public final class ChatSession {
         String connectPlayerIntro = club.connectPlayerIntro();
         String playerInfo = player.toString();
         sb.setLength(0);
-        sb.append(String.format("%s%n",connectPlayerIntro));
-        sb.append(String.format("%s%n",playerInfo));
-        System.out.println(sb);
+        sb.append(String.format("%s%n", connectPlayerIntro));
+        sb.append(String.format("%s%n", playerInfo));
+        System.out.print(sb);
 
 
         sb.setLength(0);
@@ -191,6 +195,7 @@ public final class ChatSession {
         sb.append(String.format("%s", player.replyToStudent(student.getFirstName())));
         sb.append(String.format("%s", player.askForNumberOfCards()));
         System.out.print(sb);
+
 
         getNumberOfCards();
 
@@ -242,6 +247,7 @@ public final class ChatSession {
         // player.sayGoodbye
         runQuiz();
     }
+
     private void runQuiz() {
 
         quiz // quiz object given to the class
@@ -264,6 +270,7 @@ public final class ChatSession {
 
     private void stopChatSession() {
     }
+
     public void runChatSession() {
         startChatSession();
         connectChatters();
@@ -284,7 +291,7 @@ public final class ChatSession {
     }
 
     public ChatSession setUniversity(University university) {
-       this.university = university;
+        this.university = university;
         return this;
     }
 
