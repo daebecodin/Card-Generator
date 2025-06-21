@@ -125,23 +125,30 @@ public final class ChatSession {
      * @return The number of cards entered by the user, or 1 if input is invalid after 3 tries.
      */
     private int getNumberOfCards() {
-        int numberOfCards = 1; // Default value
-        int tries = 3;
-        for (int i = 0; i < 3; i++) {
-            try {
-                System.out.print(student.talk());
+        int numberOfCards = 1;    // default
+        int tries          = 4;
+
+        while (tries > 0) {
+            // 1) always print prompt once here:
+            System.out.print(student.talk());
+
+            // 2) check before you read
+            if (input.hasNextInt()) {
                 numberOfCards = input.nextInt();
-                input.nextLine(); // Consume the rest of the line
-                return numberOfCards; // Return the valid input
-            } catch (InputMismatchException e) {
-                System.err.println("Please enter an INTEGER. " + (tries -1) + " tries left.");
-                input.nextLine(); // Consume the invalid input
+                input.nextLine();  // consume the newline
+                return numberOfCards;
+            } else {
+                input.nextLine();  // consume the bad token
+                tries--;
+                System.out.println("Please enter an INTEGER. "
+                        + tries + " tries left.");
             }
-            tries --;
         }
+
         System.out.println("Defaulting to 1 card.");
-        return numberOfCards; // Return default value
+        return numberOfCards;
     }
+
     private void chat() {
 
         player.setClub(club) // the player constructed with the class is given the club created for the class
@@ -172,8 +179,9 @@ public final class ChatSession {
         sb.setLength(0);
         sb.append(String.format("%s", player.replyToStudent(student.getFirstName())));
         sb.append(String.format("%s", player.askForNumberOfCards()));
-        getNumberOfCards();
         System.out.print(sb);
+
+        getNumberOfCards();
 
         int numberOfCards = 1; // default number of cards to create
 

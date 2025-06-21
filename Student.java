@@ -45,7 +45,7 @@ public final class Student extends Person {
     public String talk() {
 //        sb.setLength(0);
 //        sb.append(String.format("%s%s", this.getFullName(), ": "));
-        return (String.format("%s%s", this.getFullName(), ": "));
+        return this.getFullName() + ": ";
     }
 
     public String getEmail() {
