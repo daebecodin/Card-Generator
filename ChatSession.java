@@ -124,10 +124,12 @@ public final class ChatSession {
      * Handles getting the number of cards from the user with retries.
      * @return The number of cards entered by the user, or 1 if input is invalid after 3 tries.
      */
+
+
     private int getNumberOfCards() {
         int numberOfCards = 1;    // default
         int tries          = 4;
-        // 1) always print prompt once here:
+
         System.out.print(student.talk());
         while (tries > 0) {
 
@@ -136,6 +138,7 @@ public final class ChatSession {
 //            String line = input.nextLine();
             // 2) check before you read
             try {
+
 //                numberOfCards = Integer.parseInt(line.trim());
                 numberOfCards = input.nextInt();
                 return numberOfCards;
@@ -145,18 +148,18 @@ public final class ChatSession {
 
 //                System.out.flush();
 
-                System.err.println("Please enter an INTEGER. "
+                System.out.println("Please enter an INTEGER. "
                         + tries + " tries left.");
-                System.err.println(e.getClass().getName());
-                System.err.flush();
-//                System.err.flush();
-//                System.out.println(e.getClass().getName());
-//                System.out.flush();
+                System.out.println(e.getClass().getName());
+                System.out.flush();
+
+                if (tries > 0) {
+
+                    System.out.print(student.talk());
+                }
             }
         }
 
-        System.out.println(student.talk());
-        System.out.flush();
         return numberOfCards;
     }
 
@@ -191,6 +194,7 @@ public final class ChatSession {
         sb.append(String.format("%s", player.replyToStudent(student.getFirstName())));
         sb.append(String.format("%s", player.askForNumberOfCards()));
         System.out.print(sb);
+
 
         getNumberOfCards();
 
