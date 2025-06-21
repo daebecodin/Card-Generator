@@ -36,6 +36,8 @@ public final class Player extends Person {
     private static final StringBuilder sb = new StringBuilder();
     private static final int WIDTH = 70;
 
+    private static Color sfsuColors = Color.Yellow.and(Color.BgPurple);
+
     // Instance Data Fields
     private Club club;
     private String position;

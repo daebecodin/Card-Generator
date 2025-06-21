@@ -20,6 +20,8 @@ public final class Student extends Person {
 
     private static final int WIDTH = 70;
     private static final StringBuilder sb = new StringBuilder();
+
+    private static final Color sfsuColors = Color.Yellow.and(Color.BgPurple);
     //
     // Instance Data Fields
     //
@@ -45,7 +47,7 @@ public final class Student extends Person {
     public String talk() {
 //        sb.setLength(0);
 //        sb.append(String.format("%s%s", this.getFullName(), ": "));
-        return this.getFullName() + ": ";
+        return sfsuColors.colorize(this.getFullName()) + ": ";
     }
 
     public String getEmail() {
