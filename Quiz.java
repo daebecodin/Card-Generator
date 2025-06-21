@@ -14,11 +14,12 @@ package assignment02PartB;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import static java.lang.System.out;
 // I don't want to write System a bunch of time, so I did that here
 
 public final class Quiz {
 
-    private static final StringBuilder sb = new StringBuilder();
+    private static final StringBuilder sb = new StringBuilder(); // Shared Stringbuilder
 
     //
     // Instance Data Fields
@@ -31,14 +32,13 @@ public final class Quiz {
     private int allowedMisses;
     private String studentName;
 
-
-
-
+    //ANSI escape codes
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_RESET = "\u001B[0m";
 
     //
     // Constructors
     //
-
 
     public Quiz() {
     }
@@ -59,26 +59,18 @@ public final class Quiz {
     //
 
 
-    public List<QuestionAnswer> getQuestions() {
-        return this.questions;
-    }
+    public List<QuestionAnswer> getQuestions() {return this.questions;}
 
-    public String getLoseMessage() {
-        return loseMessage;
-    }
+    public String getLoseMessage() {return loseMessage;}
 
-    public String getStudentName() {
-        return studentName;
-    }
+    public String getStudentName() {return studentName;}
 
     public Quiz setStudentName(String studentName) {
         this.studentName = studentName;
         return this;
     }
 
-    public String getClubName() {
-        return clubName;
-    }
+    public String getClubName() {return clubName;}
 
     public Quiz setClubName(String clubName) {
         this.clubName = clubName;
@@ -146,39 +138,69 @@ public final class Quiz {
         boolean firstQuestion = true;
 
         for (QuestionAnswer qa : questions) {
-            if (!firstQuestion) {
-                System.out.println();
-            } else {
+            // Handles blank lines between question. No Blank before first question.
+            //if (!firstQuestion) {
+            //    out.println();
+            //} else {
+            if (firstQuestion) {
                 firstQuestion = false;
             }
 
-            sb.setLength(0);
-            sb.append(club.getShortName()).append(": ").append(qa.getQuestionText()).append("\n");
-            sb.append(student.getFullName()).append(": ");
-            System.out.print(sb);
-            String userAnswer = input.next();
-            input.nextLine();
+            // Printing question prompt
+            sb.setLength(0); // Clearing out StringBuilder for reuse
+            sb.append(club.getShortName()).append(": ").append(qa.getQuestionText());
+            out.println(sb);
 
+            // Print Student Prompt and collect answer
             sb.setLength(0);
-            String result = qa.checkAnswer(userAnswer);
-            sb.append(club.getShortName()).append(": ").append(result);
-            System.out.print(sb);
-            if (result.equals("Oops...")) {
+            sb.append(student.getFullName()).append(": ");
+            out.print(sb);
+            String userAnswer = input.nextLine();
+
+            // This is error handling created specifically for
+            // an empty input. System.err.print would just not work
+            // due to buffer.
+            String messageToDisplay;
+            boolean currentAnswerIsOops = false;
+
+            if (userAnswer.trim().isEmpty()) {
+                messageToDisplay = club.getShortName() +
+                        ": " + ANSI_RED + "Oops..." + ANSI_RESET;
+                currentAnswerIsOops = true;
+            } else {
+                String qaResult = qa.checkAnswer(userAnswer);
+
+                sb.setLength(0);
+                sb.append(club.getShortName()).append(": ").append(qaResult);
+                messageToDisplay = sb.toString();
+
+                if (qaResult.equals("Oops...")) {
+                    currentAnswerIsOops = true;
+                }
+            }
+
+            // normal operation of runQuiz feedback loop
+            if (currentAnswerIsOops) {
+                out.println(messageToDisplay);
                 oopsAnswers++;
+            } else {
+                out.println(messageToDisplay);
             }
         }
 
         String finalMessage;// Also append to StringBuilder
-// Still print immediately
+                            // Still print immediately
+        //Closing of runQuiz
         if (oopsAnswers <= allowedMisses) {
-            finalMessage = clubName + winMessage;
+            finalMessage = clubName + ": " + winMessage;
         } else {
-            finalMessage = clubName + loseMessage;
+            finalMessage = clubName + ": " + loseMessage;
         }
-        System.out.println(finalMessage); // Still print immediately
+        out.println(finalMessage); // Still print immediately
+        out.println(Timer.timeStamp() + " - Chat Session Ended");
 
-        sb.append(String.format("%s%s", Timer.timeStamp(), " - Chat Session Ended "));
-        return sb.toString();
+        input.close();
+        return ""; // return empty String
     }
 
 
