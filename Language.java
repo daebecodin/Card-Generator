@@ -18,6 +18,25 @@ public final class Language {
         return defaultAlienSound;
     }
 
+    public static boolean isAlien() {
+        return "alien".equals(locale);
+    }
+
+    /** one‐line helper – translate every word in s to your full glyph */
+    public static String translate(String s) {
+        if (!isAlien()) return s;
+        return s.replaceAll("\\S+", defaultAlienSound);
+    }
+
+    /** convenience: prints with translation if needed */
+    public static void println(String s) {
+        System.out.println(translate(s));
+    }
+    public static void printf(String fmt, Object... args) {
+        String built = String.format(fmt, args);
+        System.out.print(translate(built));
+    }
+
     public Language() {}
 
     public Language(String locale) {
