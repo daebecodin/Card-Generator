@@ -1,5 +1,7 @@
 package assignment02PartB;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public final class Language {
@@ -24,6 +26,47 @@ public final class Language {
         Language.locale = locale;
     }
 
+    public static boolean isAlien() { return "alien".equals(locale); }
+    public static String translate(String in) {
+        return isAlien() ? defaultAlienSound : in;
+    }
+
+    public static void hookSystemStreams() {
+        if (!isAlien()) return;
+
+        PrintStream origOut = System.out;
+        System.setOut(new PrintStream(new OutputStream() {
+            @Override public void write(int b) {
+                origOut.write(b);
+            } }, true) {
+            @Override public void print(String s) {
+                super.print(translate(s));
+            }
+            @Override public void println(String s) {
+                super.println(translate(s));
+            }
+            @Override public void print(Object o) {
+                super.print(translate(String.valueOf(o)));
+            }
+            @Override public void println(Object o) {
+                super.println(translate(String.valueOf(o)));
+            }
+        });
+
+        PrintStream origErr = System.err;
+        System.setErr(new PrintStream(new OutputStream() {
+            @Override public void write(int b) {
+                origErr.write(b);
+            }
+        }, true) {
+            @Override public void print(String s) { super.print(translate(s)); }
+            @Override public void println(String s) { super.println(translate(s)); }
+            @Override public void print(Object o) { super.print(translate(String.valueOf(o))); }
+            @Override public void println(Object o) { super.println(translate(String.valueOf(o))); }
+        });
+    }
+
+
     public static void displayAppHeader() {
         System.out.println();
         System.out.println(Config.getOfficialAppHeader());
@@ -39,10 +82,14 @@ public final class Language {
             input.nextLine();
             switch (locale) {
                 case "alien" -> {
-                    return new Language("alien");
+                    Language lang = new Language("alien");
+                    hookSystemStreams();
+                    return lang;
                 }
                 case "english" -> {
-                    return new Language("english");
+                    Language lang = new Language("english");
+                    hookSystemStreams();
+                    return lang;
                 }
                 default -> {
                     System.out.println("Language: UNSUPPORTED language. Please enter your language.");
