@@ -49,9 +49,10 @@ public final class Club extends Organization {
     }
 
 
-    public Club(String name, String shortName, int establishedOn, List<String> teamColors, String teamBallPark, int worldSeriesTitles, int nationalLeaguePennants, int divisionTitles, int wildCardBerths, OwnerGroup teamOwners, President teamPresident, GeneralManager teamGeneralManager, Manager manager) {
+    public Club(String name, String shortName, String officialSong, int establishedOn, List<String> teamColors, String teamBallPark, int worldSeriesTitles, int nationalLeaguePennants, int divisionTitles, int wildCardBerths, OwnerGroup teamOwners, President teamPresident, GeneralManager teamGeneralManager, Manager manager) {
         this.name = name;
         this.shortName = shortName;
+        this.officialSong = officialSong;
         this.establishedOn = establishedOn;
         this.teamColors = teamColors;
         this.teamBallPark = teamBallPark;
@@ -65,9 +66,12 @@ public final class Club extends Organization {
         this.manager = manager;
     }
 
+
+
     public Club(String name) {
         this.name = name;
     }
+
 
     public Club setOfficialSong(String officialSong) {
         this.officialSong = officialSong;
@@ -89,7 +93,7 @@ public final class Club extends Organization {
         return this.manager;
     }
     public static String getOfficialSong() {
-        return "Take Me out to the Ball Game";
+        return Club.officialSong;
     }
 
     @Override

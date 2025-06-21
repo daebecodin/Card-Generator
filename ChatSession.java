@@ -23,7 +23,7 @@ public final class ChatSession {
     private Club club;
     private University university;
     private final Student student = new Student(); // composite relationship to the session
-    private final Player player = new Player("Buster", "Posey"); // compose relationship to the session
+    private final Player player = new Player(); // compose relationship to the session
     private final Quiz quiz = new Quiz(); // composite relationship to the session
     private static final int WIDTH = 70;
     private static final StringBuilder sb = new StringBuilder(); // string builder is a buffer of strings; it must be cleared and printed.
@@ -54,8 +54,8 @@ public final class ChatSession {
                 .setNationalLeaguePennants(23)
                 .setDivisionTitles(8)
                 .setWildCardBerths(3)
+                .setOfficialSong("Take Me Out to the Ball Game")
                 .setTeamOwners(new OwnerGroup("San Francisco Baseball Association", this.getClub()))
-
                 .setTeamPresident(new President("Farhan", "Zaidi"))
                 .setTeamGeneralManager(new GeneralManager("Scott", "Harris"))
                 .setManager(new Manager("Gabe", "Kapler"));
@@ -165,11 +165,15 @@ public final class ChatSession {
     private void chat() {
 
         player.setClub(club) // the player constructed with the class is given the club created for the class
+
                 .setPosition("Catcher")
                 .setJerseyNumber(28)
                 .setBats("Right")
                 .setSideThrows("Right")
-                .setMlbDebut(2009);
+                .setMlbDebut(2009)
+                .setFirstName("Buster")
+                .setLastName("Posey")
+        ;
         String connectPlayerIntro = club.connectPlayerIntro();
         String playerInfo = player.toString();
         sb.setLength(0);
