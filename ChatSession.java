@@ -13,23 +13,26 @@ package assignment02PartB;
 // Please make sure to read the provided "_ListOf-PleaseDoNotChange.txt"
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public final class ChatSession {
 
+    // private data fields for a chat session
     private Club club;
     private University university;
-    private final Student student = new Student();
-    private final Player player = new Player("Buster", "Posey");
-    private final Quiz quiz = new Quiz();
+    private final Student student = new Student(); // composite relationship to the session
+    private final Player player = new Player("Buster", "Posey"); // compose relationship to the session
+    private final Quiz quiz = new Quiz(); // composite relationship to the session
     private static final int WIDTH = 70;
-    private static final StringBuilder sb = new StringBuilder();
+    private static final StringBuilder sb = new StringBuilder(); // string builder is a buffer of strings; it must be cleared and printed.
     private static final Scanner input = new Scanner(System.in);
 
     public ChatSession() {
     }
 
+    // the chat session is created with a club and a university
     public ChatSession(Club club, University university) {
         this.club = club;
         this.university = university;
@@ -41,8 +44,7 @@ public final class ChatSession {
     private void startChatSession() {
 
         sb.setLength(0);
-        sb.append(String.format("%s%s", Timer.timeStamp(), " - Chat Session Started "));
-        club
+        club // club the sesion is constructed with
                 .setName("San Francisco Giants")
                 .setShortName("SF Giants")
                 .setEstablishedOn(1883)
@@ -59,6 +61,10 @@ public final class ChatSession {
                 .setManager(new Manager("Gabe", "Kepler"));
 
 
+
+        sb.append(String.format("%s%s", Timer.timeStamp(), " - Chat session started"));
+        System.out.println(sb); // printing current items in buffer
+
         // TODO: make these methods
         String clubIntro = club.clubIntro();
         System.out.println(clubIntro);
@@ -66,6 +72,7 @@ public final class ChatSession {
         System.out.println(clubInfo);
     }
     private void connectChatters() {
+
 
         // TODO: make these methods for student
         sb.setLength(0);
@@ -92,7 +99,7 @@ public final class ChatSession {
         sb.append("-".repeat(WIDTH));
         System.out.println(sb);
 
-        university
+        university // university session is constructed with
                 .setOfficialName("San Francisco State University")
                 .setMottoInLatin("Experientia Docet")
                 .setMottoInEnglish("Experience Teaches")
@@ -112,18 +119,43 @@ public final class ChatSession {
         System.out.println(universityInfo);
 
     }
+
+    /**
+     * Handles getting the number of cards from the user with retries.
+     * @return The number of cards entered by the user, or 1 if input is invalid after 3 tries.
+     */
+    private int getNumberOfCards() {
+        int numberOfCards = 1; // Default value
+        int tries = 3;
+        for (int i = 0; i < 3; i++) {
+            try {
+                System.out.print(student.talk());
+                numberOfCards = input.nextInt();
+                input.nextLine(); // Consume the rest of the line
+                return numberOfCards; // Return the valid input
+            } catch (InputMismatchException e) {
+                System.err.println("Please enter an INTEGER. " + (tries -1) + " tries left.");
+                input.nextLine(); // Consume the invalid input
+            }
+            tries --;
+        }
+        System.out.println("Defaulting to 1 card.");
+        return numberOfCards; // Return default value
+    }
     private void chat() {
 
-        player.setClub(club)
+        player.setClub(club) // the player constructed with the class is given the club created for the class
                 .setPosition("Catcher")
                 .setJerseyNumber(28)
                 .setBats("Right")
                 .setSideThrows("Right")
                 .setMlbDebut(2009);
         String connectPlayerIntro = club.connectPlayerIntro();
-        System.out.println(connectPlayerIntro);
         String playerInfo = player.toString();
-        System.out.println(playerInfo);
+        sb.setLength(0);
+        sb.append(String.format("%s%n",connectPlayerIntro));
+        sb.append(String.format("%s%n",playerInfo));
+        System.out.println(sb);
 
 
         sb.setLength(0);
@@ -131,19 +163,19 @@ public final class ChatSession {
         sb.append(String.format("%s%n", player.sayStudentUniversity(student.getUniversity().getOfficialName())));
         System.out.print(sb);
 
+        sb.setLength(0);
         System.out.print(student.talk());
+        System.out.print(sb);
         String studentFirstResponse = input.next();
         input.nextLine();
 
         sb.setLength(0);
         sb.append(String.format("%s", player.replyToStudent(student.getFirstName())));
         sb.append(String.format("%s", player.askForNumberOfCards()));
+        getNumberOfCards();
         System.out.print(sb);
 
-        System.out.print(student.talk());
-        int numberOfCards = input.nextInt();
-        input.nextLine();
-
+        int numberOfCards = 1; // default number of cards to create
 
         sb.setLength(0);
         System.out.print(player.getCardDetails(numberOfCards));
@@ -158,6 +190,7 @@ public final class ChatSession {
             System.out.print(student.talk() + "[1] ");
             String recipient = input.next();
             input.nextLine();
+
 
             System.out.print(student.talk() + "[2] ");
             String artSymbolInput = input.next();
@@ -175,7 +208,16 @@ public final class ChatSession {
         for (Card card : cards) {
             card.displayCard();
         }
-        sb.append("\n");
+
+        sb.setLength(0);
+        sb.append(String.format("%s", student.talk()));
+        System.out.print(sb);
+        String studentThankYou = input.next();
+        input.nextLine();
+
+        sb.setLength(0);
+        sb.append(String.format("%s%n", player.sayGoodbye(student.getFirstName())));
+        System.out.print(sb);
 
         // student.sayThankyou
         // player.sayGoodbye
@@ -183,8 +225,8 @@ public final class ChatSession {
     }
     private void runQuiz() {
 
-        quiz
-                .setClubName(club.getShortName()) // Set club name from the ChatSession's club object
+        quiz // quiz object given to the class
+                .setClubName(club.getShortName()) // setClub name from the ChatSession's club object
                 .setQuizTitle("*** FREE TICKETS to SF GIANTS Games ***")
                 .setWinMessage("*** Congrats! You won FREE TICKETS to SF GIANTS Games ***")
                 .setLoseMessage("____ Please try again at your graduation ceremony. ____")
@@ -196,7 +238,8 @@ public final class ChatSession {
                 .addQuestion("Giants in Spanish?", "Gigantes")
                 .addQuestion("Take me out to the...?", "Ball Game");
 
-        System.out.println(quiz.runQuiz(club, student));
+        System.out.println(quiz.getQuizTitle());
+        System.out.println(quiz.runQuiz(club, student, input));
 
     }
 

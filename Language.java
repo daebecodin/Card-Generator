@@ -27,21 +27,33 @@ public final class Language {
     public static void displayAppHeader() {
         System.out.println();
         System.out.println(Config.getOfficialAppHeader());
-        System.out.print("Pick a language: ");
-        Language.locale = input.next().toLowerCase();
+
     }
 
     // This method is now simple: it just returns the correct Language object.
     public static Language setLanguagePreference() {
-        return switch (locale) {
-            case "alien" -> new Language("alien");
-            case "english" -> new Language("english");
-            default -> {
-                System.out.println("Invalid Language: " + locale + ". Defaulting to English.");
-                yield new Language("english");
+
+        while (true) {
+            System.out.print("Language: ");
+            Language.locale = input.next().toLowerCase();
+            input.nextLine();
+            switch (locale) {
+                case "alien" -> {
+                    return new Language("alien");
+                }
+                case "english" -> {
+                    return new Language("english");
+                }
+                default -> {
+                    System.out.println("Language: UNSUPPORTED language. Please enter your language.");
+                    System.out.println("Language: English or Alien");
+
+                }
             }
-        };
+        }
+
     }
+
 
     // handleConfigPhrase now provides either English or Alien text.
     public String handleConfigPhrase(int i) {

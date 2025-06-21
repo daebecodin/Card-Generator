@@ -28,7 +28,7 @@ public class StdOutStdErrTee extends OutputStream {
 
     private String stdOutFilePath = getStdOutFilePath();
     private String stdErrFilePath = getStdErrFilePath();
-    private String receipt = "src/assignment02PartB/log/Receipt-*-*.log"    ;
+    private String receiptFilePath = "src/assignment02PartB/log/Receipt-*-*.log"    ;
 
 
     public String getStdOutFilePath() {
@@ -164,7 +164,15 @@ public class StdOutStdErrTee extends OutputStream {
         }
     }
 
+    public String getReceiptFilePath() {
+        return receiptFilePath;
     }
+
+    public StdOutStdErrTee setReceiptFilePath(String receiptFilePath) {
+        this.receiptFilePath = receiptFilePath;
+        return this;
+    }
+}
 
     //
     // Static Data Fields

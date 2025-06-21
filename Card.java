@@ -38,10 +38,11 @@ public final class Card {
     public void displayCard() {
         try {
             SFGiantsCardGenerator.generateSFGiantsCard(
+
+                    recipientName,
                     message,
                     senderName,
                     senderEmail,
-                    recipientName,
                     artSymbol,
                     artSize,
                     artFont

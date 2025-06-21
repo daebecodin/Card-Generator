@@ -29,12 +29,13 @@ public class Timer {
             }
             String in = input.next().trim().toUpperCase();
             switch (in) {
-                case "EST":
-                    return new Timer(ZoneId.of("America/New_York"));
-                case "PST":
-                    return new Timer(ZoneId.of("America/Los_Angeles"));
-                default:
-                    System.out.println("Invalid Zone: " + in);
+                case "EST" -> {
+                    return new Timer(ZoneId.of("America/New_York"));}
+                case "PST" ->{
+                    return new Timer(ZoneId.of("America/Los_Angeles"));}
+                default -> {
+                    System.out.println("TimeZone: INVALID time zone. Please enter your time zone.");
+                }
             }
         }
     }
