@@ -26,6 +26,7 @@ public final class Club extends Organization {
     //
     private String name;
     private String shortName;
+    private static String officialSong;
     private int establishedOn;
     private List<String> teamColors = new ArrayList<>();
     private String teamBallPark;
@@ -68,6 +69,16 @@ public final class Club extends Organization {
         this.name = name;
     }
 
+    public Club setOfficialSong(String officialSong) {
+        this.officialSong = officialSong;
+        return this;
+    }
+
+    public Club setTeamColors(List<String> teamColors) {
+        this.teamColors = teamColors;
+        return this;
+    }
+
     public President getTeamPresident() {
         return this.teamPresident;
     }
@@ -78,7 +89,7 @@ public final class Club extends Organization {
         return this.manager;
     }
     public static String getOfficialSong() {
-        return "Yahoo";
+        return "Take Me out to the Ball Game";
     }
 
     @Override
@@ -205,6 +216,7 @@ public final class Club extends Organization {
         this.manager = manager;
         return this;
     }
+
 
     public String clubIntro() {
         sb.setLength(0);

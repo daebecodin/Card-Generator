@@ -123,6 +123,12 @@ public final class Player extends Person {
         return sb.toString();
     }
 
+    public String sayGoodbye(String studentName) {
+        sb.setLength(0);
+        sb.append(String.format("%s%s%s%s%n", talk(), "Thank you again, ", studentName, ". See you at your graduation ceremony"));
+        return sb.toString();
+    }
+
     public Player setClub(Club club) {
         this.club = club;
         return this;

@@ -12,13 +12,13 @@ package assignment02PartB;
 // Please organize all the given files in 1 same package
 // Please make sure to read the provided "_ListOf-PleaseDoNotChange.txt"
 
-public final class QuestionAnswer {
+public  class QuestionAnswer {
 
     //
     // Instance Data Fields
     //
-    private final String questionText;
-    private final String correctAnswer;
+    private String questionText;
+    private String correctAnswer;
 
 
     //

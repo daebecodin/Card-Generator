@@ -14,7 +14,6 @@ package assignment02PartB;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import static java.lang.System.out;
 // I don't want to write System a bunch of time, so I did that here
 
 public final class Quiz {
@@ -138,46 +137,45 @@ public final class Quiz {
     // Instance Method
     // runQuiz method to be used in ChatSession
     //
-    public String runQuiz(Club club, Student student)  {
-        sb.append(club.getShortName()).append(": ").append(this.quizTitle);
+    public String runQuiz(Club club, Student student, Scanner input)  {
+
         //
         // Opening and setting up Quiz for User
         //
-        Scanner input = new Scanner(System.in);
         int oopsAnswers = 0;
         boolean firstQuestion = true;
 
         for (QuestionAnswer qa : questions) {
             if (!firstQuestion) {
-                out.println();
+                System.out.println();
             } else {
                 firstQuestion = false;
             }
 
-            sb.append(club.getShortName()).append(": ").append(qa.getQuestionText());
+            sb.setLength(0);
+            sb.append(club.getShortName()).append(": ").append(qa.getQuestionText()).append("\n");
             sb.append(student.getFullName()).append(": ");
+            System.out.print(sb);
             String userAnswer = input.next();
             input.nextLine();
 
+            sb.setLength(0);
             String result = qa.checkAnswer(userAnswer);
             sb.append(club.getShortName()).append(": ").append(result);
-
+            System.out.print(sb);
             if (result.equals("Oops...")) {
                 oopsAnswers++;
             }
         }
 
-        sb.append("\n");
-
-        // Closed quiz loop
-        // Posting final results
-        //
+        String finalMessage;// Also append to StringBuilder
+// Still print immediately
         if (oopsAnswers <= allowedMisses) {
-            out.println(clubName + winMessage);
+            finalMessage = clubName + winMessage;
         } else {
-            out.println(clubName + loseMessage);
+            finalMessage = clubName + loseMessage;
         }
-        input.close();
+        System.out.println(finalMessage); // Still print immediately
 
         sb.append(String.format("%s%s", Timer.timeStamp(), " - Chat Session Ended "));
         return sb.toString();
