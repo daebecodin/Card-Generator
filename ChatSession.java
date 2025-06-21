@@ -215,8 +215,7 @@ public final class ChatSession {
             input.nextLine();
 
             System.out.print(student.talk() + "[3] ");
-            String cardMessage = input.next();
-            input.nextLine();
+            String cardMessage = input.nextLine();
 
             cards.add(new Card(recipient, artSymbol, cardMessage, student.getFirstName(), student.getEmail(), defaultArtSize, defaultArtFont));
         }
