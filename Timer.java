@@ -80,7 +80,7 @@ public class Timer {
         ZonedDateTime zdt = ZonedDateTime.now(this.zoneId);
         String fullName = zdt.format(DateTimeFormatter.ofPattern("zzzz", Locale.ENGLISH));
         boolean isDst = zdt.getZone().getRules().isDaylightSavings(zdt.toInstant());
-        String status = isDst ? "in Daylight Saving Time" : "not in Daylight Saving Time";
+        String status = isDst ? "in Daylight Saving" : "not in Daylight Saving";
         return String.format("%s %s", fullName, status);
     }
 }
