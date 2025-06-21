@@ -127,25 +127,36 @@ public final class ChatSession {
     private int getNumberOfCards() {
         int numberOfCards = 1;    // default
         int tries          = 4;
-
+        // 1) always print prompt once here:
+        System.out.print(student.talk());
         while (tries > 0) {
-            // 1) always print prompt once here:
-            System.out.print(student.talk());
 
+
+            // variable to ole next line
+//            String line = input.nextLine();
             // 2) check before you read
-            if (input.hasNextInt()) {
+            try {
+//                numberOfCards = Integer.parseInt(line.trim());
                 numberOfCards = input.nextInt();
-                input.nextLine();  // consume the newline
                 return numberOfCards;
-            } else {
-                input.nextLine();  // consume the bad token
+            } catch (InputMismatchException e){
+                input.nextLine(); // consumes invalid input
                 tries--;
-                System.out.println("Please enter an INTEGER. "
+
+//                System.out.flush();
+
+                System.err.println("Please enter an INTEGER. "
                         + tries + " tries left.");
+                System.err.println(e.getClass().getName());
+                System.err.flush();
+//                System.err.flush();
+//                System.out.println(e.getClass().getName());
+//                System.out.flush();
             }
         }
 
-        System.out.println("Defaulting to 1 card.");
+        System.out.println(student.talk());
+        System.out.flush();
         return numberOfCards;
     }
 
