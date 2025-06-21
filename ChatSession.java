@@ -41,8 +41,6 @@ public final class ChatSession {
     }
 
 
-
-
     private void startChatSession() {
 
         sb.setLength(0);
