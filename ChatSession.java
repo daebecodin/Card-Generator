@@ -95,7 +95,7 @@ public final class ChatSession {
 
         // TODO: make these methods student
         sb.setLength(0);
-        sb.append(String.format("%s%s%n", student.getFullName(), ": Welcome to my university!"));
+        sb.append(String.format("%s%s%n", student.talk(), "Welcome to my university!"));
         sb.append("-".repeat(WIDTH));
         System.out.println(sb);
 
