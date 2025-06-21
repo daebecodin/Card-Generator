@@ -267,12 +267,14 @@ public final class ChatSession {
     }
 
     private void stopChatSession() {
+        System.exit(1);
     }
 
     public void runChatSession() {
         startChatSession();
         connectChatters();
         chat();
+        stopChatSession();
     }
 
     public Club getClub() {
