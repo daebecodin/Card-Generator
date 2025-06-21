@@ -128,36 +128,32 @@ public final class ChatSession {
 
 
     private int getNumberOfCards() {
-        int numberOfCards = 1;    // default
+        int  numberOfCards = 1;
         int tries = 4;
 
         System.out.print(student.talk());
         while (tries > 0) {
 
 
-            // variable to ole next line
-//            String line = input.nextLine();
-            // 2) check before you read
             try {
-
-//                numberOfCards = Integer.parseInt(line.trim());
-                numberOfCards = input.nextInt();
-                return numberOfCards;
+                return input.nextInt();
             } catch (InputMismatchException e) {
                 input.nextLine(); // consumes invalid input
                 tries--;
 
 //                System.out.flush();
                 System.err.println(e.getClass().getName()); // print err stream first bc it wants to print last; javan will place the following out stream statements before it
-                System.err.flush();
                 System.out.println("Please enter an INTEGER. "
-                        + tries + " tries left.");
+                        + (tries - 1)+ " tries left.");
 
 
                 if (tries > 0) {
 
                     System.out.print(student.talk());
                 }
+
+
+
             }
         }
 
@@ -197,18 +193,15 @@ public final class ChatSession {
         System.out.print(sb);
 
 
-        getNumberOfCards();
-
-        int numberOfCards = 1; // default number of cards to create
-
+        int howManycards = getNumberOfCards();
         sb.setLength(0);
-        System.out.print(player.getCardDetails(numberOfCards));
+        System.out.print(player.getCardDetails(howManycards));
 
         ArrayList<Card> cards = new ArrayList<>();
         int defaultArtSize = 13;
         String defaultArtFont = "Courier";
 
-        for (int i = 0; i < numberOfCards; i++) {
+        for (int i = 0; i < howManycards; i++) {
             System.out.println(player.talk() + "Card #" + (i + 1) + ":");
 
             System.out.print(student.talk() + "[1] ");
