@@ -56,9 +56,9 @@ public final class ChatSession {
                 .setWildCardBerths(3)
                 .setTeamOwners(new OwnerGroup("San Francisco Baseball Association", this.getClub()))
 
-                .setTeamPresident(new President("Farhan", "Zadai"))
+                .setTeamPresident(new President("Farhan", "Zaidi"))
                 .setTeamGeneralManager(new GeneralManager("Scott", "Harris"))
-                .setManager(new Manager("Gabe", "Kepler"));
+                .setManager(new Manager("Gabe", "Kapler"));
 
 
         sb.append(String.format("%s%s", Timer.timeStamp(), " - Chat session started"));
