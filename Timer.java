@@ -36,6 +36,18 @@ public class Timer {
                 case "CST" ->{
                     return new Timer(ZoneId.of("America/Chicago"));
                 }
+                case "MST" ->{
+                    return new Timer(ZoneId.of("America/Denver"));
+                }
+                case "GMT" ->{
+                    return new Timer(ZoneId.of("GMT"));
+                }
+                case "UTC" ->{
+                    return new Timer(ZoneId.of("UTC"));
+                }
+                case "CANADA" ->{
+                    return new Timer(ZoneId.of("America/Toronto"));
+                }
                 default -> {
                     System.out.println("TimeZone: INVALID time zone. Please enter your time zone.");
                 }
