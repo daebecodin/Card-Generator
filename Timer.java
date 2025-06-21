@@ -33,6 +33,9 @@ public class Timer {
                     return new Timer(ZoneId.of("America/New_York"));}
                 case "PST" ->{
                     return new Timer(ZoneId.of("America/Los_Angeles"));}
+                case "CST" ->{
+                    return new Timer(ZoneId.of("America/Chicago"));
+                }
                 default -> {
                     System.out.println("TimeZone: INVALID time zone. Please enter your time zone.");
                 }
@@ -40,9 +43,9 @@ public class Timer {
         }
     }
     
-    public static String timeStamp() {
+    public  String timeStamp() {
 
-        ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of(String.valueOf(ZoneId.systemDefault())));
+        ZonedDateTime zdt = ZonedDateTime.now(this.zoneId);
         DateTimeFormatter dtf = new DateTimeFormatterBuilder()
                 .appendPattern("yyyy/MM/dd hh:mm:ss ") // desired format for date and time
                 .appendLiteral("[") // append a starting bracket

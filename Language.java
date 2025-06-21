@@ -1,6 +1,7 @@
 package assignment02PartB;
 
 import java.util.Scanner;
+import java.util.Timer;
 
 public final class Language {
 
@@ -8,6 +9,7 @@ public final class Language {
     private static final int WIDTH = 70;
     private static final Scanner input = new Scanner(System.in);
     private static String locale = "";
+    public static Timer timer = new Timer();
 
     // Added static "getters" so other classes like Timer can see the language.
     public static String getLocale() {

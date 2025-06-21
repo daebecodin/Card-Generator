@@ -41,10 +41,12 @@ public final class ChatSession {
     }
 
 
+
+
     private void startChatSession() {
 
         sb.setLength(0);
-        club // club the sesion is constructed with
+        club  // club the sesion is constructed with
                 .setName("San Francisco Giants")
                 .setShortName("SF Giants")
                 .setEstablishedOn(1883)
@@ -61,7 +63,9 @@ public final class ChatSession {
                 .setManager(new Manager("Gabe", "Kapler"));
 
 
-        sb.append(String.format("%s%s", Timer.timeStamp(), " - Chat session started"));
+        Timer timer = Messenger.getConfig().getTimer();
+        String timeStamp = timer.timeStamp();
+        sb.append(String.format("%s%s", timeStamp, " - Chat session started"));
         System.out.println(sb); // printing current items in buffer
 
         // TODO: make these methods

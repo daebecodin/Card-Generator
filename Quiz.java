@@ -177,7 +177,9 @@ public final class Quiz {
         }
         System.out.println(finalMessage); // Still print immediately
 
-        sb.append(String.format("%s%s", Timer.timeStamp(), " - Chat Session Ended "));
+        Timer timer = Timer.setTimeZonePreference();
+        String timeStamp = timer.timeStamp();
+        sb.append(String.format("%s%s", timeStamp, " - Chat Session Ended "));
         return sb.toString();
     }
 
