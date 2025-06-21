@@ -177,7 +177,7 @@ public final class ChatSession {
         sb.setLength(0);
         sb.append(String.format("%s%n", connectPlayerIntro));
         sb.append(String.format("%s%n", playerInfo));
-        System.out.println(sb);
+        System.out.print(sb);
 
 
         sb.setLength(0);
