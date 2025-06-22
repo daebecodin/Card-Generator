@@ -31,6 +31,17 @@ public class StdOutStdErrTee extends OutputStream {
     private String receiptFilePath = "src/assignment02PartB/log/Receipt-*-*.log"    ;
 
 
+
+    /**
+     * Replaces the placeholders in the receiptFilePath with the student's information.
+     * @param fullName The student's full name.
+     * @param email The student's email address.
+     */
+    public void finalizeReceiptFilePath(String fullName, String email) {
+        this.receiptFilePath = this.receiptFilePath
+                .replaceFirst("\\*", fullName.replace(" ", "-").toUpperCase())
+                .replaceFirst("\\*", email.toUpperCase());
+    }
     public String getStdOutFilePath() {
         return Config.getDefaultStdOutFilePath();
 
@@ -168,10 +179,7 @@ public class StdOutStdErrTee extends OutputStream {
         return receiptFilePath;
     }
 
-    public StdOutStdErrTee setReceiptFilePath(String receiptFilePath) {
-        this.receiptFilePath = receiptFilePath;
-        return this;
-    }
+
 }
 
     //

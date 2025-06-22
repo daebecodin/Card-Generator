@@ -100,6 +100,10 @@ public final class ChatSession {
         student.setEmail(input.next());
         System.out.println(""); // Print a blank line for spacing.
 
+        // creating a receipt file path
+        Messenger.getConfig().getStdOutStdErrTee().finalizeReceiptFilePath(student.getFullName(), student.getEmail());
+
+
         // The student's "talk()" method provides their name, and the welcome message is localized.
         System.out.printf(Language.getString("chat.welcome") + "%n", student.talk());
         System.out.println("-".repeat(WIDTH));
@@ -201,6 +205,9 @@ public final class ChatSession {
             cards.add(new Card(recipient, artSymbol, cardMessage, student.getFirstName(), student.getEmail(), defaultArtSize, defaultArtFont));
         }
 
+        student.setCards(cards); // Store the created cards in the student object
+
+
         System.out.println("\n" + String.format(Language.getString("player.confirmOrder"), player.talk(), student.getFirstName()));
         for (Card card : cards) {
             card.displayCard();
@@ -210,10 +217,27 @@ public final class ChatSession {
         input.next(); // Consume student's confirmation.
         input.nextLine();
 
-        System.out.printf("%s%n", player.sayGoodbye(student.getFirstName()));
-        runQuiz();
+        System.out.printf("%s%n%n", player.sayGoodbye(student.getFirstName()));
     }
 
+
+    private String performQuiz() {
+        quiz //
+                .setClubName(club.getShortName()) //
+                .setQuizTitle("*** FREE TICKETS to SF GIANTS Games ***") //
+                .setWinMessage("*** PASSED quiz. Got FREE TICKETS. ***") // Modified to match screenshot
+                .setLoseMessage("____ FAILED quiz. Please try again. ____") // Modified to match screenshot
+                .setAllowedMisses(1) //
+                .addQuestion("Which type of class has 'protected' constructors?", "abstract") //
+                .addQuestion("What type of method did Java 8 add to 'interface'?", "default") //
+                .addQuestion("What new keyword did Java 13 add to 'switch' statement?", "yield") //
+                .addQuestion("In Java 15, what keyword pairs with 'sealed'?", "permits") //
+                .addQuestion("Giants in Spanish?", "Gigantes") //
+                .addQuestion("Take me out to the...?", "Ball Game"); //
+
+        System.out.println(quiz.getQuizTitle()); //
+        return quiz.runQuiz(club, student, input); // Capture the returned result
+    }
     /**
      * Sets up and runs the quiz for the student.
      */
@@ -239,7 +263,7 @@ public final class ChatSession {
      * Stops the chat session and exits the program.
      */
     private void stopChatSession() {
-        System.exit(0); // A 0 status indicates a normal, successful exit.
+//        System.exit(0); // A 0 status indicates a normal, successful exit.
     }
 
     /**
@@ -249,6 +273,12 @@ public final class ChatSession {
         startChatSession();
         connectChatters();
         chat();
+//        stopChatSession();
+
+        // Generate the receipt with all collected info including the quiz result
+        String result = performQuiz();
+        Receipt.generate(Messenger.getConfig(), student, player, (ArrayList<Card>) student.getCards(), result );
+
         stopChatSession();
     }
 

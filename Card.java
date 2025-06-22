@@ -52,9 +52,17 @@ public final class Card {
             System.err.println("cannot print card");
         }
     }
-    //
-    // Additional Instance Methods
-    //
+    public String getRecipientName() {
+        return this.recipientName;
+    }
+
+    public char getArtSymbol() {
+        return this.artSymbol;
+    }
+
+    public String getMessage() {
+        return this.message;
+    }
 
 
     //

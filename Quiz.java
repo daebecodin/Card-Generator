@@ -212,7 +212,7 @@ public final class Quiz {
         out.println(Messenger.getConfig().getTimer().timeStamp() + " - Chat Session Ended");
 
         input.close();
-        return ""; // return empty String
+        return finalMessage; // return empty String
     }
 
 
