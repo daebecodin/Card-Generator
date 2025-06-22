@@ -209,7 +209,7 @@ public final class Quiz {
             finalMessage = clubName + ": " + loseMessage;
         }
         out.println(finalMessage); // Still print immediately
-        out.println(Messenger.getConfig().getTimer().timeStamp() + " - Chat Session Ended");
+        out.println(Messenger.getConfig().getTimer().timeStamp() + Language.getString("chat.session.ended"));
 
         input.close();
         return finalMessage; // return empty String

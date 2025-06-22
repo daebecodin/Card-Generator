@@ -75,7 +75,7 @@ public final class Player extends Person {
     }
 
     public String sayStudentUniversity(String studentUniversity) {
-        return String.format(Language.getString("player.sayUniversity"), talk(), studentUniversity.toUpperCase());
+        return String.format(Language.getString("player.sayUniversity"), talk(), sfsuColors.colorize(studentUniversity.toUpperCase()), " Way To Go!");
     }
 
     public String replyToStudent(String studentName) {
@@ -149,7 +149,7 @@ public final class Player extends Person {
         sb.append(String.format("%-25s %-50s%n", Language.getString("player.bats"), this.getBats()));
         sb.append(String.format("%-25s %-50s%n", Language.getString("player.throws"), this.getSideThrows()));
         sb.append(String.format("%-25s %-50s%n", Language.getString("player.debut"), this.getMlbDebut()));
-        sb.append("-".repeat(WIDTH)).append("\n"); // maybe String.format
+        sb.append(Language.getString("config.separator")).append("\n"); // maybe String.format
         sb.append(String.format("%s", ". . . . ."));
         return sb.toString();
     }

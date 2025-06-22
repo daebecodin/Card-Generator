@@ -228,6 +228,8 @@ public final class Club extends Organization {
     public String toString() {
         // No more isAlien check here. Just get the string!
         sb.setLength(0);
+        sb.append(String.format("%-25s %s%n", Language.getString("club.name"), this.getName()));
+        sb.append(String.format("%-25s %s%n", Language.getString("club.shortName"), this.getShortName()));
         sb.append(String.format("%-25s %s%n", Language.getString("club.establishedOn"), this.getEstablishedOn()));
         sb.append(String.format("%-25s %s%n", Language.getString("club.colors"), String.join(", ", this.getTeamColors())));
         sb.append(String.format("%-25s %s%n", Language.getString("club.ballpark"), this.getTeamBallPark()));
@@ -239,7 +241,7 @@ public final class Club extends Organization {
         sb.append(String.format("%-25s %s%n", Language.getString("club.president"), this.getTeamPresident().getFullName()));
         sb.append(String.format("%-25s %s%n", Language.getString("club.generalManager"), this.getTeamGeneralManager().getFullName()));
         sb.append(String.format("%-25s %s%n", Language.getString("club.manager"), this.getManager().getFullName()));
-        sb.append("-".repeat(WIDTH)).append("\n");
+        sb.append(Language.getString("config.separator")).append("\n");
         return sb.toString();
     }
 
@@ -248,7 +250,7 @@ public final class Club extends Organization {
         // Using Language.getString for the introduction text
         sb.append(Language.getString("club.intro"));
         sb.append("\n");
-        sb.append("-".repeat(WIDTH));
+        sb.append(Language.getString("config.separator"));
         return sb.toString();
     }
 
@@ -258,7 +260,7 @@ public final class Club extends Organization {
         // Using Language.getString for the player intro text
         sb.append(Language.getString("club.playerIntro"));
         sb.append(String.format("%n%s%n", ". . . . ."));
-        sb.append("-".repeat(WIDTH));
+        sb.append(Language.getString("config.separator"));
         return sb.toString();
     }
 

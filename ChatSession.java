@@ -20,9 +20,6 @@ import java.util.Scanner;
 
 public final class ChatSession {
 
-    // ---
-    // Data Fields
-    // ---
     private Club club;
     private University university;
     private final Student student = new Student(); // composite relationship to the session
@@ -31,13 +28,7 @@ public final class ChatSession {
     private static final int WIDTH = 70;
     private static final Scanner input = new Scanner(System.in);
 
-    // ---
-    // Refactoring Note:
-    // The static StringBuilder 'sb' was removed. We will now use the methods
-    // from the Language class (e.g., Language.printf) to handle all user-facing
-    // output. This simplifies the code and automatically handles the translation
-    // to the "alien" language when the locale is set.
-    // ---
+
 
     /**
      * Default constructor.
@@ -77,12 +68,10 @@ public final class ChatSession {
                 .setManager(new Manager(Language.getString("club.data.manager.firstName"), Language.getString("club.data.manager.lastName")));
 
 
-        // This is a system log message, so it doesn't need translation.
         Timer timer = Messenger.getConfig().getTimer();
-        System.out.printf("%s%s%n", timer.timeStamp(), " - Chat session started");
+        System.out.printf("%s%s%s%n", timer.timeStamp(), " - ", Language.getString("chat.session.started"));
         System.out.println();
 
-        // The clubIntro() and toString() methods are already localized, so we print their output directly.
         System.out.println(club.clubIntro());
         System.out.println(club.toString());
     }
@@ -91,12 +80,13 @@ public final class ChatSession {
      * Gathers information from the student and sets up the University details.
      */
     private void connectChatters() {
-        // Build the prompt using the club's (now localized) short name and the localized prompt text.
-        System.out.print(club.getShortName() + ": " + Language.getString("chat.prompt.name"));
+
+        // Build the prompt using the club's short name and the prompt.
+        System.out.print(club.getShortName() + " " + Language.getString("chat.prompt.name"));
         student.setFirstName(input.next());
         student.setLastName(input.next());
 
-        System.out.print(club.getShortName() + ": " + Language.getString("chat.prompt.email"));
+        System.out.print(club.getShortName() + " " + Language.getString("chat.prompt.email"));
         student.setEmail(input.next());
         System.out.println(""); // Print a blank line for spacing.
 
@@ -104,9 +94,8 @@ public final class ChatSession {
         Messenger.getConfig().getStdOutStdErrTee().finalizeReceiptFilePath(student.getFullName(), student.getEmail());
 
 
-        // The student's "talk()" method provides their name, and the welcome message is localized.
         System.out.printf(Language.getString("chat.welcome") + "%n", student.talk());
-        System.out.println("-".repeat(WIDTH));
+        System.out.println(Language.getString("config.separator"));
 
         // All university data is now loaded from the resource bundle.
         university
@@ -223,19 +212,19 @@ public final class ChatSession {
 
     private String performQuiz() {
         quiz //
-                .setClubName(club.getShortName()) //
+                .setClubName(club.getShortName())
                 .setQuizTitle("*** FREE TICKETS to SF GIANTS Games ***") //
-                .setWinMessage("*** PASSED quiz. Got FREE TICKETS. ***") // Modified to match screenshot
-                .setLoseMessage("____ FAILED quiz. Please try again. ____") // Modified to match screenshot
+                .setWinMessage("*** PASSED quiz. Got FREE TICKETS. ***")
+                .setLoseMessage("____ FAILED quiz. Please try again. ____")
                 .setAllowedMisses(1) //
-                .addQuestion("Which type of class has 'protected' constructors?", "abstract") //
-                .addQuestion("What type of method did Java 8 add to 'interface'?", "default") //
-                .addQuestion("What new keyword did Java 13 add to 'switch' statement?", "yield") //
-                .addQuestion("In Java 15, what keyword pairs with 'sealed'?", "permits") //
-                .addQuestion("Giants in Spanish?", "Gigantes") //
-                .addQuestion("Take me out to the...?", "Ball Game"); //
+                .addQuestion("Which type of class has 'protected' constructors?", "abstract")
+                .addQuestion("What type of method did Java 8 add to 'interface'?", "default")
+                .addQuestion("What new keyword did Java 13 add to 'switch' statement?", "yield")
+                .addQuestion("In Java 15, what keyword pairs with 'sealed'?", "permits")
+                .addQuestion("Giants in Spanish?", "Gigantes")
+                .addQuestion("Take me out to the...?", "Ball Game");
 
-        System.out.println(quiz.getQuizTitle()); //
+        System.out.println(quiz.getQuizTitle());
         return quiz.runQuiz(club, student, input); // Capture the returned result
     }
     /**
@@ -282,9 +271,7 @@ public final class ChatSession {
         stopChatSession();
     }
 
-    // ---
-    // Getters and Setters
-    // ---
+
     public Club getClub() {
         return this.club;
     }

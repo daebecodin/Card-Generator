@@ -183,16 +183,17 @@ public final class University extends Organization {
     public String toString() {
         sb.setLength(0);
         sb.append(String.format("%-25s %-50s%n", Language.getString("university.officialName"), this.officialName));
-        sb.append(String.format("%-25s %-50s%n", Language.getString("university.motto"), this.mottoInEnglish));
-        sb.append(String.format("%-25s %-50s%n", Language.getString("university.established"), this.yearOfEstablishment));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("university.data.motto.latin"), this.mottoInLatin));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("university.data.motto.english"), this.mottoInEnglish));
         sb.append(String.format("%-25s %-50s%n", Language.getString("university.type"), this.type));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("university.established"), this.yearOfEstablishment));
         sb.append(String.format("%-25s %-50s%n", Language.getString("university.location"), this.location));
         sb.append(String.format("%-25s %-50s%n", Language.getString("university.address"), this.address));
         sb.append(String.format("%-25s %-50s%n", Language.getString("university.colors"), String.join(", ", this.universityColors)));
         sb.append(String.format("%-25s %-50s%n", Language.getString("university.nickname"), this.nickName));
         sb.append(String.format("%-25s %-50s%n", Language.getString("university.mascot"), this.mascot));
         sb.append(String.format("%-25s %-50s%n", Language.getString("university.website"), this.website));
-        sb.append("-".repeat(WIDTH));
+        sb.append(Language.getString("config.separator")).append("%n");
         return sb.toString();
     }
 }

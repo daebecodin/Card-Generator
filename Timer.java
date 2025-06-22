@@ -22,7 +22,7 @@ public class Timer {
 
     public static Timer setTimeZonePreference() {
         while (true) {
-                System.out.print("TimeZone: ");
+                System.out.print(Language.getString("config.timezone"));
             String in = input.next().trim().toUpperCase();
             switch (in) {
                 case "EST" -> {
