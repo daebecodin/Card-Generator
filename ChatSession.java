@@ -208,7 +208,7 @@ public final class ChatSession {
         student.setCards(cards); // Store the created cards in the student object
 
 
-        System.out.println("\n" + String.format(Language.getString("player.confirmOrder"), player.talk(), student.getFirstName()));
+        System.out.printf((Language.getString("player.confirmOrder")) + "%n", player.talk(), student.getFirstName());
         for (Card card : cards) {
             card.displayCard();
         }

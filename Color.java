@@ -20,11 +20,11 @@ public final class Color {
     //
     // Static Data Fields
     //
-    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RESET = "\u001B[0m"; // use this
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
 
-    public static final Color Reset = new Color(ANSI_RESET);
+//    public static final Color Reset = new Color(ANSI_RESET);
     public static final Color Yellow = new Color(ANSI_YELLOW);
     public static final Color BgPurple = new Color(ANSI_PURPLE_BACKGROUND);
 
@@ -41,11 +41,11 @@ public final class Color {
     }
     public Color(String... codes) {
         this.codes = List.of(codes);
-        String _code_str = "";
+        StringBuilder _code_str = new StringBuilder();
         for (String code : codes) {
-            _code_str += code;
+            _code_str.append(code);
         }
-        codes_str = _code_str;
+        codes_str = _code_str.toString();
     }
 
     public Color and(Color other) {
