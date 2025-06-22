@@ -18,7 +18,6 @@ public final class Player extends Person {
     private static final int WIDTH = 70;
     private static Color sfsuColors = Color.Yellow.and(Color.BgPurple);
 
-    // Instance Data Fields
     private Club club;
     private String position;
     private int jerseyNumber;
@@ -26,9 +25,7 @@ public final class Player extends Person {
     private String sideThrows;
     private int mlbDebut;
 
-    //
-    // Constructors
-    //
+
     public Player() {
     }
 
@@ -141,16 +138,15 @@ public final class Player extends Person {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-25s %-50s %n", this.getClass().getSimpleName(), this.getFullName()));
-        sb.append(String.format("%-25s %-50s%n", Language.getString("player.club"), this.getClub().getName()));
-        sb.append(String.format("%-25s %-50s%n", Language.getString("player.position"), this.getPosition()));
-        sb.append(String.format("%-25s %-50s%n", Language.getString("player.number"), this.getJerseyNumber()));
-        sb.append(String.format("%-25s %-50s%n", Language.getString("player.bats"), this.getBats()));
-        sb.append(String.format("%-25s %-50s%n", Language.getString("player.throws"), this.getSideThrows()));
-        sb.append(String.format("%-25s %-50s%n", Language.getString("player.debut"), this.getMlbDebut()));
-        sb.append(Language.getString("config.separator")).append("\n"); // maybe String.format
-        sb.append(String.format("%s", ". . . . ."));
-        return sb.toString();
+        // maybe String.format
+        return String.format("%-25s %-50s %n", this.getClass().getSimpleName(), this.getFullName()) +
+                String.format("%-25s %-50s%n", Language.getString("player.club"), this.getClub().getName()) +
+                String.format("%-25s %-50s%n", Language.getString("player.position"), this.getPosition()) +
+                String.format("%-25s %-50s%n", Language.getString("player.number"), this.getJerseyNumber()) +
+                String.format("%-25s %-50s%n", Language.getString("player.bats"), this.getBats()) +
+                String.format("%-25s %-50s%n", Language.getString("player.throws"), this.getSideThrows()) +
+                String.format("%-25s %-50s%n", Language.getString("player.debut"), this.getMlbDebut()) +
+                Language.getString("config.separator") + "\n" + // maybe String.format
+                String.format("%s", ". . . . .");
     }
 }

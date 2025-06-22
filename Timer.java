@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Timer {
 
     private static final Scanner input = new Scanner(System.in);
-    private ZoneId zoneId;
+    private final ZoneId zoneId;
 
     public Timer(ZoneId zone) {
         this.zoneId = zone;
@@ -68,7 +68,6 @@ public class Timer {
     }
 
     public String getTimeZoneFormatted() {
-
 
         ZonedDateTime zdt = ZonedDateTime.now(this.zoneId);
         String fullName = zdt.format(DateTimeFormatter.ofPattern("zzzz", Locale.ENGLISH));

@@ -10,7 +10,7 @@ import java.util.Scanner;
 public final class Language {
 
     private static final Scanner input = new Scanner(System.in);
-    private static ResourceBundle messages;
+    private static ResourceBundle messages; // for localizing text
     private static String currentLocaleCode = "en"; // Default to English
     private static final String DEFAULT_ALIEN_SOUND = "~ alien ~";
 

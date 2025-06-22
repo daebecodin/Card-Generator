@@ -82,19 +82,5 @@ public final class Student extends Person {
         System.out.println("I am a student");
     }
 
-    //
-    // Instance Methods
-    //
 
-    //
-    // Additional Methods
-    //
-
-    //
-    // Language
-    //
-
-    //
-    // Override
-    //
 }

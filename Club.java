@@ -39,16 +39,10 @@ public final class Club extends Organization {
     private GeneralManager teamGeneralManager;
     private Manager manager;
 
-    //
-    // Constructors
-    //
-
 
     public Club() {
 
     }
-
-
     public Club(String name, String shortName, String officialSong, int establishedOn, List<String> teamColors, String teamBallPark, int worldSeriesTitles, int nationalLeaguePennants, int divisionTitles, int wildCardBerths, OwnerGroup teamOwners, President teamPresident, GeneralManager teamGeneralManager, Manager manager) {
         this.name = name;
         this.shortName = shortName;
@@ -71,7 +65,6 @@ public final class Club extends Organization {
     public Club(String name) {
         this.name = name;
     }
-
 
     public Club setOfficialSong(String officialSong) {
         Club.officialSong = officialSong;
@@ -96,20 +89,27 @@ public final class Club extends Organization {
         return Club.officialSong;
     }
 
-    @Override
-    public void displayAbout() {
-        System.out.println(displayClub());
-    }
-
     public String displayClub() {
-//        sb.append("Club: ").append(new Club().displayClub());
         return null;
-
     }
 
-    @Override
-    public void displayMission() {
+    public String clubIntro() {
+        sb.setLength(0);
+        // Using Language.getString for the introduction text
+        sb.append(Language.getString("club.intro"));
+        sb.append("\n");
+        sb.append(Language.getString("config.separator"));
+        return sb.toString();
+    }
 
+    public String connectPlayerIntro() {
+        sb.setLength(0);
+        sb.append("\n");
+        // Using Language.getString for the player intro text
+        sb.append(Language.getString("club.playerIntro"));
+        sb.append(String.format("%n%s%n", ". . . . ."));
+        sb.append(Language.getString("config.separator"));
+        return sb.toString();
     }
 
     public String getName() {
@@ -245,23 +245,14 @@ public final class Club extends Organization {
         return sb.toString();
     }
 
-    public String clubIntro() {
-        sb.setLength(0);
-        // Using Language.getString for the introduction text
-        sb.append(Language.getString("club.intro"));
-        sb.append("\n");
-        sb.append(Language.getString("config.separator"));
-        return sb.toString();
+    @Override
+    public void displayAbout() {
+        System.out.println(displayClub());
+    }
+    @Override
+    public void displayMission() {
+
     }
 
-    public String connectPlayerIntro() {
-        sb.setLength(0);
-        sb.append("\n");
-        // Using Language.getString for the player intro text
-        sb.append(Language.getString("club.playerIntro"));
-        sb.append(String.format("%n%s%n", ". . . . ."));
-        sb.append(Language.getString("config.separator"));
-        return sb.toString();
-    }
 
 }

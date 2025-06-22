@@ -50,7 +50,7 @@ public final class ChatSession {
      * Initializes the chat session, sets up the Club's details, and prints the intro.
      */
     private void startChatSession() {
-        // All club data is now loaded from the resource bundle via the Language class
+        // All club data is loaded from the resource bundle via the Language class
         club
                 .setName(Language.getString("club.data.name"))
                 .setShortName(Language.getString("club.data.shortName"))
@@ -97,7 +97,7 @@ public final class ChatSession {
         System.out.printf(Language.getString("chat.welcome") + "%n", student.talk());
         System.out.println(Language.getString("config.separator"));
 
-        // All university data is now loaded from the resource bundle.
+        // All university data is loaded from the resource bundle.
         university
                 .setOfficialName(Language.getString("university.data.name"))
                 .setMottoInLatin(Language.getString("university.data.motto.latin"))
@@ -156,7 +156,6 @@ public final class ChatSession {
                 .setFirstName(Language.getString("player.data.firstName"))
                 .setLastName(Language.getString("player.data.lastName"));
 
-        // All conversational methods now produce localized output.
         System.out.printf("%s%n", club.connectPlayerIntro());
         System.out.printf("%s%n", player.toString());
 
@@ -257,27 +256,6 @@ public final class ChatSession {
 
     public Club getClub() {
         return this.club;
-    }
-
-    public String getCardDetails(int numberOfCards) {
-        // Use a local StringBuilder to build the multi-line string
-        StringBuilder detailsBuilder = new StringBuilder();
-
-        // Line 1: The main prompt (e.g., "Buster Posey, 28: In 3 lines, please provide")
-        detailsBuilder.append(player.talk())
-                .append(String.format(Language.getString("player.cardDetails.prompt"), numberOfCards))
-                .append(String.format("%n"));
-
-        // Line 2: The first instruction with a tab
-        detailsBuilder.append(String.format("\t%s%n", Language.getString("player.cardDetails.line1")));
-
-        // Line 3: The second instruction with a tab
-        detailsBuilder.append(String.format("\t%s%n", Language.getString("player.cardDetails.line2")));
-
-        // Line 4: The third instruction with a tab
-        detailsBuilder.append(String.format("\t%s", Language.getString("player.cardDetails.line3")));
-
-        return detailsBuilder.toString();
     }
 
     public ChatSession setClub(Club club) {
