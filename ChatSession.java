@@ -121,7 +121,7 @@ public final class ChatSession {
      */
     private int getNumberOfCards() {
         int numberOfCards = 1;
-        int tries = 3; // Give the user 3 attempts.
+        int tries = 4; // Give the user 4 attempts.
 
         System.out.print(student.talk());
         while (tries > 0) {
@@ -131,7 +131,7 @@ public final class ChatSession {
                 input.nextLine(); // Clear the invalid input from the scanner.
                 System.err.println(e.getClass().getName()); // Keep errors on System.err.
                 // This message for the programmer/user doesn't need to be localized.
-                System.out.println("Please enter an INTEGER. " + (tries) + " tries left.");
+                System.out.printf((Language.getString("chat.prompt.integer")) + "%n", (tries - 1));
                 tries--;
                 if (tries > 0) {
                     System.out.print(student.talk());
