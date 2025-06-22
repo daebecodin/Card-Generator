@@ -15,27 +15,7 @@ package assignment02PartB;
 
 public final class Player extends Person {
 
-//    public static void main(String[] args) {
-//        Club club = new Club()
-//                .setName("San Francisco Giants")
-//                .setShortName("SF Giants");
-//
-//        Person bp = new Player()
-//                .setPosition("Short-Stop")
-//                .setJerseyNumber(10)
-//                .setTotalBats(74)
-//                .setTotalThrows(16)
-//                .setMlbDebut(2004)
-//                .setClub(club)
-//                .setFirstName("durand") // inherited from Person
-//                .setLastName("dyer"); // inherited from Person
-//
-//
-//        System.out.println(sb);
-//    }
-    private static final StringBuilder sb = new StringBuilder();
     private static final int WIDTH = 70;
-
     private static Color sfsuColors = Color.Yellow.and(Color.BgPurple);
 
     // Instance Data Fields
@@ -45,6 +25,7 @@ public final class Player extends Person {
     private String bats;
     private String sideThrows;
     private int mlbDebut;
+
     //
     // Constructors
     //
@@ -86,49 +67,48 @@ public final class Player extends Person {
     }
 
     public String talk(){
-//        StringBuilder localSb = new StringBuilder(); // local string builder because so we don't update shared string builder for messages
-//        localSb.setLength(0);
-//        localSb.append(String.format("%s%s %d%s", this.getFullName(), ",", this.getJerseyNumber(), ": "));
-        return String.format("%s%s %d%s", this.getFullName(), ",", this.getJerseyNumber(), ": ");
+        return String.format("%s, %d: ", this.getFullName(), this.getJerseyNumber());
     }
 
     public String congratulateStudent(String studentFirstName) {
-        sb.setLength(0);
-        sb.append(String.format("%s%s %s%s%s", talk(), "Hello", studentFirstName, ". ", "C-O-N-G-R-A-T-U-L-A-T-I-O-N-S!"));
-        return sb.toString();
+        return String.format(Language.getString("chat.congratulateStudent"), talk(), studentFirstName);
     }
 
     public String sayStudentUniversity(String studentUniversity) {
-        sb.setLength(0);
-        sb.append(String.format("%s%s%s%s", talk(), studentUniversity.toUpperCase(), ". ", "Way to go!"));
-        return sb.toString();
+        return String.format(Language.getString("player.sayUniversity"), talk(), studentUniversity.toUpperCase());
     }
 
     public String replyToStudent(String studentName) {
-        sb.setLength(0);
-        sb.append(String.format("%s%s%s%s %s%n", talk(), "Likewise, ", studentName, ".", "Very nice chatting w/ you."));
-        return sb.toString();
+        return String.format(Language.getString("player.replyToStudent"), talk(), studentName);
     }
 
     public String askForNumberOfCards() {
-        sb.setLength(0);
-        sb.append(String.format("%s%s%n", talk(), "How many SF Giants Thank You cards would you like to order?"));
-        return sb.toString();
+        return String.format(Language.getString("player.askForCards"), talk());
     }
 
     public String getCardDetails(int numberOfCards) {
-        sb.setLength(0);
-        sb.append(String.format("%s %s %d %s%n", this.talk(), "In", numberOfCards, "lines, please provide"));
-        sb.append(String.format("%s%s%n", "\t", "[1] Recipients name"));
-        sb.append(String.format("%s%s%n", "\t", "[2] Art symbol (a character)"));
-        sb.append(String.format("%s%s%n", "\t", "[3] Message to recipient"));
-        return sb.toString();
+        // Use a local StringBuilder to build the multi-line string from localized keys
+        StringBuilder detailsBuilder = new StringBuilder();
+
+        // Line 1: The main prompt (e.g., "Buster Posey, 28: In 3 lines, please provide")
+        detailsBuilder.append(talk())
+                .append(String.format(Language.getString("player.cardDetails.prompt"), numberOfCards))
+                .append(String.format("%n"));
+
+        // Line 2: The first instruction with a tab
+        detailsBuilder.append(String.format("\t%s%n", Language.getString("player.cardDetails.line1")));
+
+        // Line 3: The second instruction with a tab
+        detailsBuilder.append(String.format("\t%s%n", Language.getString("player.cardDetails.line2")));
+
+        // Line 4: The third instruction with a tab
+        detailsBuilder.append(String.format("\t%s%n", Language.getString("player.cardDetails.line3")));
+
+        return detailsBuilder.toString();
     }
 
     public String sayGoodbye(String studentName) {
-        sb.setLength(0);
-        sb.append(String.format("%s%s%s%s%n", talk(), "Thank you again, ", studentName, ". See you at your graduation ceremony"));
-        return sb.toString();
+        return String.format(Language.getString("player.goodbye"), talk(), studentName);
     }
 
     public Player setClub(Club club) {
@@ -161,17 +141,16 @@ public final class Player extends Person {
 
     @Override
     public String toString() {
-        sb.setLength(0);
+        StringBuilder sb = new StringBuilder();
         sb.append(String.format("%-25s %-50s %n", this.getClass().getSimpleName(), this.getFullName()));
-        sb.append(String.format("%-25s %-50s%n", "Club:", this.getClub().getName()));
-        sb.append(String.format("%-25s %-50s%n", "Position:", this.getPosition()));
-        sb.append(String.format("%-25s %-50s%n", "Number:", this.getJerseyNumber()));
-        sb.append(String.format("%-25s %-50s%n", "Bats:", this.getBats()));
-        sb.append(String.format("%-25s %-50s%n", "Throws:", this.getSideThrows()));
-        sb.append(String.format("%-25s %-50s%n", "MLB Debut:", this.getMlbDebut()));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("player.club"), this.getClub().getName()));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("player.position"), this.getPosition()));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("player.number"), this.getJerseyNumber()));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("player.bats"), this.getBats()));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("player.throws"), this.getSideThrows()));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("player.debut"), this.getMlbDebut()));
         sb.append("-".repeat(WIDTH)).append("\n"); // maybe String.format
         sb.append(String.format("%s", ". . . . ."));
         return sb.toString();
-
     }
 }

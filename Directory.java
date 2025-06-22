@@ -29,7 +29,7 @@ public final class Directory {
     }
 
     public String getPath() {
-        return "alien".equals(Language.getLocale()) ? Language.getAlienSound() : Config.getDefaultLogDirectoryPath();
+        return Config.getDefaultLogDirectoryPath();
     }
 
     //

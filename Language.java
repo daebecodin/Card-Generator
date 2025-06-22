@@ -1,126 +1,137 @@
+// In Language.java
+
 package assignment02PartB;
 
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 import java.util.Scanner;
-import java.util.Timer;
 
 public final class Language {
 
-    private static final String defaultAlienSound = "~ ąļīæń ~ ";
-    private static final int WIDTH = 70;
     private static final Scanner input = new Scanner(System.in);
-    private static String locale = "";
-    public static Timer timer = new Timer();
+    private static ResourceBundle messages;
+    private static String currentLocaleCode = "en"; // Default to English
+    private static final String DEFAULT_ALIEN_SOUND = "~ alien ~";
 
-    // Added static "getters" so other classes like Timer can see the language.
-    public static String getLocale() {
-        return locale;
+    // Private constructor
+    public Language() {
     }
 
-    public static String getAlienSound() {
-        return defaultAlienSound;
+    /**
+     * Prompts the user to select a language and loads the appropriate resource bundle.
+     * @return A new Language object.
+     */
+    public static Language setLanguagePreference() {
+        while (true) {
+            System.out.print("Language: ");
+            String choice = input.next().toLowerCase();
+            input.nextLine(); // consume the rest of the line
+
+            if ("alien".equals(choice)) {
+                currentLocaleCode = "al";
+                loadBundle(currentLocaleCode);
+                return new Language();
+            } else if ("english".equals(choice)) {
+                currentLocaleCode = "en";
+                loadBundle(currentLocaleCode);
+                return new Language();
+            } else {
+                System.out.println("Language: UNSUPPORTED language. Please enter your language.");
+                System.out.println("Language: English, Chinese, French, Spanish, Alien");
+            }
+        }
     }
 
+    /**
+     * Loads the resource bundle for the given locale code.
+     */
+    private static void loadBundle(String localeCode) {
+        Locale chosenLocale = new Locale(localeCode);
+        messages = ResourceBundle.getBundle("assignment02PartB.messages", chosenLocale);
+    }
+
+    /**
+     * The main method to get a string from the loaded bundle.
+     * @param key The key from the .properties file.
+     * @return The translated string.
+     */
+    public static String getString(String key) {
+        if (messages == null) {
+            System.err.println("WARN: Language preference not set. Defaulting to English.");
+            loadBundle("en");
+        }
+        try {
+            return messages.getString(key);
+        } catch (MissingResourceException e) {
+            System.err.println("ERROR: The key '" + key + "' was not found in the properties file.");
+            return "!" + key.toUpperCase() + "!";
+        }
+    }
+
+    // --- New Helper Methods ---
+
+    /**
+     * Checks if the current language is Alien.
+     * @return true if the locale is "al", false otherwise.
+     */
     public static boolean isAlien() {
-        return "alien".equals(locale);
+        return "al".equals(currentLocaleCode);
     }
 
-    /** one‐line helper – translate every word in s to your full glyph */
-    public static String translate(String s) {
-        if (!isAlien()) return s;
-        return s.replaceAll("\\S+", defaultAlienSound);
+    /**
+     * Gets the current locale code ("en" or "al").
+     * @return The current locale code as a String.
+     */
+    public static String getLocale() {
+        return currentLocaleCode;
     }
 
-    /** convenience: prints with translation if needed */
-    public static void println(String s) {
-        System.out.println(translate(s));
-    }
-    public static void printf(String fmt, Object... args) {
-        String built = String.format(fmt, args);
-        System.out.print(translate(built));
+    /**
+     * Returns the placeholder sound for the Alien language.
+     * @return A string representing an alien sound.
+     */
+    public static String getAlienSound() {
+        // You can define a specific key for this in your properties file if you wish
+        return "~ alien ~";
     }
 
-    public Language() {}
-
-    public Language(String locale) {
-        Language.locale = locale;
-    }
 
     public static void displayAppHeader() {
         System.out.println();
         System.out.println(Config.getOfficialAppHeader());
-
     }
 
-    // This method is now simple: it just returns the correct Language object.
-    public static Language setLanguagePreference() {
-
-        while (true) {
-            System.out.print("Language: ");
-            Language.locale = input.next().toLowerCase();
-            input.nextLine();
-            switch (locale) {
-                case "alien" -> {
-                    return new Language("alien");
-                }
-                case "english" -> {
-                    return new Language("english");
-                }
-                default -> {
-                    System.out.println("Language: UNSUPPORTED language. Please enter your language.");
-                    System.out.println("Language: English or Alien");
-
-                }
-            }
-        }
-
+    public String getLanguage() {
+        return isAlien() ? getAlienSound() : Config.getDefaultLanguage();
     }
 
+    public String getUniversityPhrase(int i) {
+        return isAlien() ? getAlienSound() : Config.getDefaultUniversity();
+    }
 
-    // handleConfigPhrase now provides either English or Alien text.
-    public String handleConfigPhrase(int i) {
-        if ("alien".equals(Language.locale)) {
-            return defaultAlienSound;
-        }
-        return switch (i) {
-            case 0 -> "-".repeat(WIDTH);
-            case 1 -> "Language:";
-            case 2 -> "Time Zone:";
-            case 3 -> "Color Sequences:";
-            case 4 -> "Standard Output Log:";
-            case 5 -> "Standard Error Log:";
-            case 6 -> "Receipt Log:";
-            case 7 -> "Receipt-*-*.log";
-            case 8 -> "Default University:";
-            case 9 -> "Default Club:";
-            default -> "";
-        };
+    public String getClubPhrase(int i) {
+        return isAlien() ? getAlienSound() : Config.getDefaultClub();
     }
 
     public String getConfigPhrase(int i) {
-        return handleConfigPhrase(i);
-    }
-
-    // All "get" methods are now simple and language-aware.
-    public Object getLanguage() {
-        return "alien".equals(Language.locale) ? defaultAlienSound : Config.getDefaultLanguage();
-    }
-
-    public Object getUniversityPhrase(int i) {
-        return "alien".equals(Language.locale) ? defaultAlienSound : Config.getDefaultUniversity();
-    }
-
-    public Object getClubPhrase(int i) {
-        return "alien".equals(Language.locale) ? defaultAlienSound : Config.getDefaultClub();
+        return switch (i) {
+            case 0 -> getString("config.separator");
+            case 1 -> getString("config.language");
+            case 2 -> getString("config.timezone");
+            case 3 -> getString("config.colors");
+            case 4 -> getString("config.stdout");
+            case 5 -> getString("config.stderr");
+            case 6 -> getString("config.logpath");
+            case 7 -> getString("config.logstatus");
+            case 8 -> getString("config.university");
+            case 9 -> getString("config.club");
+            default -> "¡KEY_NOT_FOUND!";
+        };
     }
 
     public String getGreetingPhrase(int i) {
-        if ("alien".equals(Language.locale)) {
-            return defaultAlienSound;
-        }
-        // Return a default English greeting otherwise
-        return switch (i) {
-            case 0 -> "Hello there,";
-            default -> "Hi,";
-        };
+        // Placeholder for greeting phrases if you decide to add them to properties files
+        return "Hello";
     }
 }

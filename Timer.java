@@ -22,11 +22,7 @@ public class Timer {
 
     public static Timer setTimeZonePreference() {
         while (true) {
-            if (Language.getLocale().equalsIgnoreCase("alien")) {
-                System.out.print(Language.getAlienSound() + ": ");
-            } else {
                 System.out.print("TimeZone: ");
-            }
             String in = input.next().trim().toUpperCase();
             switch (in) {
                 case "EST" -> {
@@ -72,10 +68,7 @@ public class Timer {
     }
 
     public String getTimeZoneFormatted() {
-        // --- NEW: This method is now language-aware ---
-        if ("alien".equals(Language.getLocale())) {
-            return Language.getAlienSound();
-        }
+
 
         ZonedDateTime zdt = ZonedDateTime.now(this.zoneId);
         String fullName = zdt.format(DateTimeFormatter.ofPattern("zzzz", Locale.ENGLISH));

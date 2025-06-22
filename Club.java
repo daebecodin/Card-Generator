@@ -52,7 +52,7 @@ public final class Club extends Organization {
     public Club(String name, String shortName, String officialSong, int establishedOn, List<String> teamColors, String teamBallPark, int worldSeriesTitles, int nationalLeaguePennants, int divisionTitles, int wildCardBerths, OwnerGroup teamOwners, President teamPresident, GeneralManager teamGeneralManager, Manager manager) {
         this.name = name;
         this.shortName = shortName;
-        this.officialSong = officialSong;
+        Club.officialSong = officialSong;
         this.establishedOn = establishedOn;
         this.teamColors = teamColors;
         this.teamBallPark = teamBallPark;
@@ -74,7 +74,7 @@ public final class Club extends Organization {
 
 
     public Club setOfficialSong(String officialSong) {
-        this.officialSong = officialSong;
+        Club.officialSong = officialSong;
         return this;
     }
 
@@ -222,36 +222,44 @@ public final class Club extends Organization {
     }
 
 
-    public String clubIntro() {
-        sb.setLength(0);
-        sb.append("\n");
-        sb.append(this.getShortName()).append(": ").append("Welcome to the ").append(this.getName().toUpperCase()).append("!").append("\n");
-        sb.append("-".repeat(WIDTH));
-        return sb.toString();
-    }
-    public String connectPlayerIntro() {
-        sb.setLength(0);
-        sb.append("\n");
-        sb.append(String.format("%s %s %s%n", this.getShortName(), ": ", "We are connecting you with our player...")).append(String.format("%s%n", ". . . . ."));
-        sb.append("-".repeat(WIDTH));
-        return sb.toString();
-    }
+    // In Club.java
+
     @Override
     public String toString() {
-        sb.setLength(0); // clear buffer
-        sb.append(String.format("%-25s %-50s%n", "Club:", this.getName()));
-        sb.append(String.format("%-25s %-50s%n", "Short Name:", this.getShortName()));
-        sb.append(String.format("%-25s %-50s%n", "Established In:", this.getEstablishedOn()));
-        sb.append(String.format("%-25s %-50s%n", "Colors:", String.join(", ", this.getTeamColors())));
-        sb.append(String.format("%-25s %-50s%n", "Ball Park:", this.getTeamBallPark()));
-        sb.append(String.format("%-25s %-50s%n", "World Series Titles:", this.getWorldSeriesTitles()));
-        sb.append(String.format("%-25s %-50s%n", "NL Pennants:", this.getNationalLeaguePennants()));
-        sb.append(String.format("%-25s %-50s%n", "Wild Card Berths", this.getWildCardBerths()));
-        sb.append(String.format("%-25s %-50s%n", "Owners", this.getTeamOwners().getName()));
-        sb.append(String.format("%-25s %-50s%n", "President:", this.getTeamPresident().getFullName()));
-        sb.append(String.format("%-25s %-50s%n", "General Manager:", this.getTeamGeneralManager().getFullName()));
-        sb.append(String.format("%-25s %-50s%n", "Manager", this.getTeamManager().getFullName()));
+        // No more isAlien check here. Just get the string!
+        sb.setLength(0);
+        sb.append(String.format("%-25s %s%n", Language.getString("club.establishedOn"), this.getEstablishedOn()));
+        sb.append(String.format("%-25s %s%n", Language.getString("club.colors"), String.join(", ", this.getTeamColors())));
+        sb.append(String.format("%-25s %s%n", Language.getString("club.ballpark"), this.getTeamBallPark()));
+        sb.append(String.format("%-25s %s%n", Language.getString("club.worldSeriesTitles"), this.getWorldSeriesTitles()));
+        sb.append(String.format("%-25s %s%n", Language.getString("club.nlPennants"), this.getNationalLeaguePennants()));
+        sb.append(String.format("%-25s %s%n", Language.getString("club.divisionTitles"), this.getDivisionTitles()));
+        sb.append(String.format("%-25s %s%n", Language.getString("club.wildCardBerths"), this.getWildCardBerths()));
+        sb.append(String.format("%-25s %s%n", Language.getString("club.owners"), this.getTeamOwners().getName()));
+        sb.append(String.format("%-25s %s%n", Language.getString("club.president"), this.getTeamPresident().getFullName()));
+        sb.append(String.format("%-25s %s%n", Language.getString("club.generalManager"), this.getTeamGeneralManager().getFullName()));
+        sb.append(String.format("%-25s %s%n", Language.getString("club.manager"), this.getManager().getFullName()));
         sb.append("-".repeat(WIDTH)).append("\n");
         return sb.toString();
     }
+
+    public String clubIntro() {
+        sb.setLength(0);
+        // Using Language.getString for the introduction text
+        sb.append(Language.getString("club.intro"));
+        sb.append("\n");
+        sb.append("-".repeat(WIDTH));
+        return sb.toString();
+    }
+
+    public String connectPlayerIntro() {
+        sb.setLength(0);
+        sb.append("\n");
+        // Using Language.getString for the player intro text
+        sb.append(Language.getString("club.playerIntro"));
+        sb.append(String.format("%n%s%n", ". . . . ."));
+        sb.append("-".repeat(WIDTH));
+        return sb.toString();
+    }
+
 }

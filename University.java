@@ -177,19 +177,21 @@ public final class University extends Organization {
     }
 
 
+    // In University.java
+
     @Override
     public String toString() {
-        sb.append(String.format("%-25s %-50s%n", "Official Name:", this.officialName));
-        sb.append(String.format("%-25s %-50s%n", "Motto In Latin:", this.mottoInLatin));
-        sb.append(String.format("%-25s %-50s%n", "Motto In English:", this.mottoInEnglish));
-        sb.append(String.format("%-25s %-50s%n", "Type:", this.type));
-        sb.append(String.format("%-25s %-50s%n", "Year Of Establishment:", this.yearOfEstablishment));
-        sb.append(String.format("%-25s %-50s%n", "Location:", this.location));
-        sb.append(String.format("%-25s %-50s%n", "Address:", this.address));
-        sb.append(String.format("%-25s %-50s%n", "Colors:", String.join(", ",this.universityColors)));
-        sb.append(String.format("%-25s %-50s%n", "Nickname:", this.nickName));
-        sb.append(String.format("%-25s %-50s%n", "Mascot:", this.mascot));
-        sb.append(String.format("%-25s %-50s%n", "Website:", this.website));
+        sb.setLength(0);
+        sb.append(String.format("%-25s %-50s%n", Language.getString("university.officialName"), this.officialName));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("university.motto"), this.mottoInEnglish));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("university.established"), this.yearOfEstablishment));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("university.type"), this.type));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("university.location"), this.location));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("university.address"), this.address));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("university.colors"), String.join(", ", this.universityColors)));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("university.nickname"), this.nickName));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("university.mascot"), this.mascot));
+        sb.append(String.format("%-25s %-50s%n", Language.getString("university.website"), this.website));
         sb.append("-".repeat(WIDTH));
         return sb.toString();
     }

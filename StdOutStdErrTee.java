@@ -32,11 +32,11 @@ public class StdOutStdErrTee extends OutputStream {
 
 
     public String getStdOutFilePath() {
-        return "alien".equals(Language.getLocale()) ? Language.getAlienSound() : Config.getDefaultStdOutFilePath();
+        return Config.getDefaultStdOutFilePath();
 
     }
     public String getStdErrFilePath() {
-        return "alien".equals(Language.getLocale()) ? Language.getAlienSound() : Config.getDefaultStdErrFilePath();
+        return Config.getDefaultStdErrFilePath();
     }
 
 
