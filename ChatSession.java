@@ -209,44 +209,27 @@ public final class ChatSession {
         System.out.printf("%s%n%n", player.sayGoodbye(student.getFirstName()));
     }
 
-
+    /**
+     * Sets up and runs the quiz for the student.
+     */
     private String performQuiz() {
         quiz //
                 .setClubName(club.getShortName())
-                .setQuizTitle("*** FREE TICKETS to SF GIANTS Games ***") //
-                .setWinMessage("*** PASSED quiz. Got FREE TICKETS. ***")
-                .setLoseMessage("____ FAILED quiz. Please try again. ____")
+                .setQuizTitle(club.getShortName() + Language.getString("quiz.title")) //
+                .setWinMessage(Language.getString("quiz.win")) // Modified to match screenshot
+                .setLoseMessage(Language.getString("quiz.lose"))
                 .setAllowedMisses(1) //
-                .addQuestion("Which type of class has 'protected' constructors?", "abstract")
-                .addQuestion("What type of method did Java 8 add to 'interface'?", "default")
-                .addQuestion("What new keyword did Java 13 add to 'switch' statement?", "yield")
-                .addQuestion("In Java 15, what keyword pairs with 'sealed'?", "permits")
-                .addQuestion("Giants in Spanish?", "Gigantes")
-                .addQuestion("Take me out to the...?", "Ball Game");
+                .addQuestion("quiz.question.1", "quiz.answer.1")
+                .addQuestion("quiz.question.2", "quiz.answer.2")
+                .addQuestion("quiz.question.3", "quiz.answer.3")
+                .addQuestion("quiz.question.4", "quiz.answer.4")
+                .addQuestion("quiz.question.5", "quiz.answer.5")
+                .addQuestion("quiz.question.6", "quiz.answer.6");
 
         System.out.println(quiz.getQuizTitle());
         return quiz.runQuiz(club, student, input); // Capture the returned result
     }
-    /**
-     * Sets up and runs the quiz for the student.
-     */
-    private void runQuiz() {
-        quiz
-                .setClubName(club.getShortName())
-                .setQuizTitle("*** FREE TICKETS to SF GIANTS Games ***")
-                .setWinMessage("*** Congrats! You won FREE TICKETS to SF GIANTS Games ***")
-                .setLoseMessage("____ Please try again at your graduation ceremony. ____")
-                .setAllowedMisses(1)
-                .addQuestion("Which type of class has 'protected' constructors?", "abstract")
-                .addQuestion("What type of method did Java 8 add to 'interface'?", "default")
-                .addQuestion("What new keyword did Java 13 add to 'switch' statement?", "yield")
-                .addQuestion("In Java 15, what keyword pairs with 'sealed'?", "permits")
-                .addQuestion("Giants in Spanish?", "Gigantes")
-                .addQuestion("Take me out to the...?", "Ball Game");
 
-        System.out.println(quiz.getQuizTitle());
-        System.out.println(quiz.runQuiz(club, student, input));
-    }
 
     /**
      * Stops the chat session and exits the program.

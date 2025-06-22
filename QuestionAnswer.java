@@ -44,7 +44,7 @@ public  class QuestionAnswer {
     // -Ian
 
     public String checkAnswer(String userAnswer) {
-        return correctAnswer.equalsIgnoreCase(userAnswer.trim()) ? "Correct!" : "Oops...";
+        return correctAnswer.equalsIgnoreCase(userAnswer.trim()) ? Language.getString("quiz.correct") : Language.getString("quiz.incorrect");
     }
 
     public static String winCheck() {

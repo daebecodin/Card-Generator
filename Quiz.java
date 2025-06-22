@@ -104,11 +104,12 @@ public final class Quiz {
     //  you want to addQuestion. See runQuiz method at bottom for next use of QuestionAnswer
     // -Ian
     //
-    public Quiz addQuestion(String questionText, String correctAnswer) {
+    public Quiz addQuestion(String questionKey, String answerKey) {
+        String questionText = Language.getString(questionKey);
+        String correctAnswer = Language.getString(answerKey);
         this.questions.add(new QuestionAnswer(questionText, correctAnswer));
         return this;
     }
-
     public Quiz setWinMessage(String winMessage) {
         this.winMessage = winMessage;
         return this;
@@ -173,14 +174,13 @@ public final class Quiz {
             boolean currentAnswerIsOops = false;
 
             if (userAnswer.trim().isEmpty()) {
-                messageToDisplay = club.getShortName() +
-                        ": " + ANSI_RED + "Oops..." + ANSI_RESET;
+                messageToDisplay = club.getShortName() + ANSI_RED +  Language.getString("quiz.incorrect")+ ANSI_RESET;
                 currentAnswerIsOops = true;
             } else {
                 String qaResult = qa.checkAnswer(userAnswer); //This is the "Correct!" case
 
                 sb.setLength(0);
-                sb.append(club.getShortName()).append(": ");
+                sb.append(club.getShortName());
 
                 if (qaResult.equals("Oops...")) {
                     sb.append(ANSI_RED).append(qaResult).append(ANSI_RESET);
@@ -204,12 +204,12 @@ public final class Quiz {
         // Still print immediately
         //Closing of runQuiz
         if (oopsAnswers <= allowedMisses) {
-            finalMessage = clubName + ": " + winMessage;
+            finalMessage =winMessage;
         } else {
-            finalMessage = clubName + ": " + loseMessage;
+            finalMessage = loseMessage;
         }
         out.println(finalMessage); // Still print immediately
-        out.println(Messenger.getConfig().getTimer().timeStamp() + Language.getString("chat.session.ended"));
+        out.println(Messenger.getConfig().getTimer().timeStamp() + " - " + Language.getString("chat.session.ended"));
 
         input.close();
         return finalMessage; // return empty String

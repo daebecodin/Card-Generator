@@ -38,7 +38,7 @@ public final class Language {
                 return new Language();
             } else {
                 System.out.println("Language: UNSUPPORTED language. Please enter your language.");
-                System.out.println("Language: English, Chinese, French, Spanish, Alien");
+                System.out.println("Language: English or Alien");
             }
         }
     }
