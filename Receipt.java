@@ -3,8 +3,8 @@
  * San Francisco State University
  * CSC 220 -  Data Structures
  * File Name: Receipt.java
- * Author: Duc Ta
- * Author: <First Name> <Last Name>
+ * @author: Durand Dyer
+ * @author: Ian Brown
  * **********************************************
  */
 

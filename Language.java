@@ -1,4 +1,12 @@
-// In Language.java
+/*
+ * **********************************************
+ * San Francisco State University
+ * CSC 220 -  Data Structures
+ * File Name: Language.java
+ * @author: Durand Dyer
+ * @author: Ian Brown
+ * **********************************************
+ */
 
 package assignment02PartB;
 

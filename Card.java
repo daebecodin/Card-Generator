@@ -4,7 +4,8 @@
  * CSC 220 -  Data Structures
  * File Name: Card.java
  * @author: Duc Ta
- * @author: <First Name> <Last Name>
+ * @author: Durand Dyer
+ * @author: Ian Brown
  * **********************************************
  */
 
