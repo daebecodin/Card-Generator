@@ -43,10 +43,20 @@ public class StdOutStdErrTee extends OutputStream {
                 .replaceFirst("\\*", email.toUpperCase());
     }
     public String getStdOutFilePath() {
+        // need to manually change for language
+
+        if (Language.isAlien()) {
+            return Language.getAlienSound();
+        }
         return Config.getDefaultStdOutFilePath();
 
     }
     public String getStdErrFilePath() {
+        // need to manually change for language
+
+        if (Language.isAlien()) {
+            return Language.getAlienSound();
+        }
         return Config.getDefaultStdErrFilePath();
     }
 

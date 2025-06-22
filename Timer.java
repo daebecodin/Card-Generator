@@ -68,6 +68,11 @@ public class Timer {
     }
 
     public String getTimeZoneFormatted() {
+        // need to manually change for language
+
+        if (Language.isAlien()) {
+            return Language.getAlienSound();
+        }
 
         ZonedDateTime zdt = ZonedDateTime.now(this.zoneId);
         String fullName = zdt.format(DateTimeFormatter.ofPattern("zzzz", Locale.ENGLISH));

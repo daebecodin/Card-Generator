@@ -79,6 +79,11 @@ public final class Color {
     }
 
     public Object getColorSequences() {
+        // need to manually change for language
+
+        if (Language.isAlien()) {
+            return Language.getAlienSound();
+        }
         return Config.getDefaultColorSequences();
     }
 

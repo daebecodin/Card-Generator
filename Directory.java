@@ -29,6 +29,10 @@ public final class Directory {
     }
 
     public String getPath() {
+        // need to manually change for language
+        if (Language.isAlien()) {
+            return Language.getAlienSound();
+        }
         return Config.getDefaultLogDirectoryPath();
     }
 
