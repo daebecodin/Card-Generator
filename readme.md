@@ -1,4 +1,4 @@
-Of course\! Here is a concise `README.md` file for your project.
+
 
 # SF GIANTS THANK YOU - CSC 220 Project
 
